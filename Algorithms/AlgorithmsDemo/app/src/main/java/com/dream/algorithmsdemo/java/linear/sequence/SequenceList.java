@@ -1,4 +1,6 @@
-package com.dream.algorithmsdemo.java.sequence;
+package com.dream.algorithmsdemo.java.linear.sequence;
+
+import android.app.LauncherActivity;
 
 import androidx.annotation.NonNull;
 
@@ -12,16 +14,14 @@ import java.util.Iterator;
  */
 public class SequenceList<T> implements Iterable<T>{
 
-    private final T[] eles;
+    private T[] eles;
 
-    private final int capacity;
 
     private int N;
 
 
     public SequenceList(int capacity){
         this.eles = (T[]) new Object[capacity];
-        this.capacity = capacity;
         this.N = 0;
     }
 
@@ -42,14 +42,17 @@ public class SequenceList<T> implements Iterable<T>{
     }
 
     public void insert(T t){
+        if(N == eles.length){
+            resize(2 * eles.length);
+        }
         eles[N++] = t;
     }
 
     public void insert(int i,T t){
+        if(N == eles.length){
+            resize(2 * eles.length);
+        }
         for(int index = N;index > i;index--){
-            if(index == capacity){
-               return;
-            }
             eles[index] = eles[index - 1];
         }
         eles[i] = t;
@@ -62,6 +65,9 @@ public class SequenceList<T> implements Iterable<T>{
             eles[index] = eles[index+1];
         }
         N--;
+        if(N < eles.length / 4){
+            resize(eles.length / 2);
+        }
         return current;
     }
 
@@ -72,6 +78,21 @@ public class SequenceList<T> implements Iterable<T>{
             }
         }
         return -1;
+    }
+
+    /**
+     * 根据参数 newSize 重置 eles 的大小
+     * @param newSize
+     */
+    public void resize(int newSize){
+        //定义一个临时数组，指向原数组
+        T[] temp = eles;
+        //创建一个新数组
+        eles = (T[]) new Object[newSize];
+        //把愿数组的数据拷贝到新数组即可
+        for (int i = 0; i < N; i++) {
+            eles[i] = temp[i];
+        }
     }
 
     @NonNull
