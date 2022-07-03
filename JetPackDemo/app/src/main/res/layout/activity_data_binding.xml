@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.dream.jetpackdemo.databinding.viewmodel.DataBindingViewModel" />
+
+        <variable
+            name="click"
+            type="android.view.View.OnClickListener" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        tools:context=".databinding.DataBindingActivity">
+
+
+        <!--1-->
+        <!--<TextView
+            android:id="@+id/tvName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{cat.name}"
+            android:visibility="@{cat.isShowName() ? View.VISIBLE : View.GONE}" />-->
+
+        <!--2-->
+        <!--1、直接绑定点击事件-->
+        <!--android:onClick="@{click}"-->
+        <!--2、通过 ViewModel 绑定点击事件-->
+        <!--android:onClick="@{()->viewModel.click(viewModel.nameLiveData)}"-->
+        <TextView
+            android:id="@+id/tvName"
+            android:onClick="@{viewModel.observableFieldClick}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.nameLiveData}" />
+
+
+       <!-- <EditText
+            android:id="@+id/etInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@={viewModel.nameLiveData}"
+            android:hint="please input..."
+            android:importantForAutofill="no"
+            tools:ignore="HardcodedText,LabelFor,TextFields" />-->
+
+        <Button
+            android:id="@+id/btnOperate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="操作"
+            tools:ignore="HardcodedText" />
+
+        <Button
+            android:id="@+id/btnOperate2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="操作2"
+            tools:ignore="HardcodedText" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="fitXY"
+            android:background="@android:color/holo_red_dark"
+            app:imageUrl="@{viewModel.imageUrlLiveData}" />
+
+        <!--suppress AndroidUnknownAttribute -->
+        <com.dream.jetpackdemo.databinding.bindingmethod.CustomTextView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="30dp"
+            android:text="@{viewModel.nameLiveData}"
+            android:custom_text="@{viewModel.customText}" />
+
+
+    </LinearLayout>
+</layout>
