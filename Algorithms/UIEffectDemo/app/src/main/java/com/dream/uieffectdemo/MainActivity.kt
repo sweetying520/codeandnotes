@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.dream.uieffectdemo.databinding.ActivityMainBinding
+import com.dream.uieffectdemo.imedittext.IMEditTextActivity
 import com.dream.uieffectdemo.popupwindow.PopupWindowActivity
 
 class MainActivity : AppCompatActivity() {
@@ -32,6 +33,11 @@ class MainActivity : AppCompatActivity() {
         //popWindow 点击
         mBinding?.popupWindowClick = View.OnClickListener{
             startActivityInner<PopupWindowActivity>(this)
+        }
+
+        //smartEditText 点击
+        mBinding?.smartEditTextClick = View.OnClickListener {
+            startActivityInner<IMEditTextActivity>(this)
         }
     }
 

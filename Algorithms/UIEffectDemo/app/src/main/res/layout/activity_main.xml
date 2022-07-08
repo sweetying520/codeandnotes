@@ -11,6 +11,10 @@
         <variable
             name="popupWindowClick"
             type="android.view.View.OnClickListener" />
+
+        <variable
+            name="smartEditTextClick"
+            type="android.view.View.OnClickListener" />
     </data>
 
     <ScrollView
@@ -32,6 +36,15 @@
                 android:layout_marginVertical="5dp"
                 android:onClick="@{popupWindowClick}"
                 android:text="PopupWindow"
+                android:textAllCaps="false" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="5dp"
+                android:onClick="@{smartEditTextClick}"
+                android:text="SmartEditText"
                 android:textAllCaps="false" />
         </LinearLayout>
 

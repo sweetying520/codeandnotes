@@ -1,19 +1,11 @@
 package com.dream.uieffectdemo.popupwindow
 
 import android.annotation.SuppressLint
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.util.Log
-import android.view.Gravity
-import android.view.View
-import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.PopupWindow
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.blankj.utilcode.util.ScreenUtils
 import com.dream.uieffectdemo.R
 import com.dream.uieffectdemo.databinding.ActivityPopupWindowBinding
 
@@ -50,7 +42,6 @@ class PopupWindowActivity : AppCompatActivity() {
         val mDataList = mViewModel.mockDataList()
 
         mAdapter.setNewData(mDataList)
-
     }
 
 //    val location: IntArray = IntArray(2)

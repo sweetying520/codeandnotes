@@ -2,6 +2,7 @@ package com.dream.uieffectdemo.popupwindow
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,10 +34,12 @@ class PopupWindowRvItemAdapter(context: Context): RecyclerView.Adapter<PopupWind
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+        Log.d("erdai", "onCreateViewHolder: ")
         return MyViewHolder(layoutInflater?.inflate(R.layout.item_popupwindow_rv_view,parent,false)!!)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+        Log.d("erdai", "onBindViewHolder: $position")
         val str = mDataList?.get(position)
         if(str != null){
             holder.tvNickName?.text = "erdai666"

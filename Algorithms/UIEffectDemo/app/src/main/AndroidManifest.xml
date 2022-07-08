@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.dream.uieffectdemo">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -25,6 +27,10 @@
         </activity>
         <activity android:name=".popupwindow.PopupWindowActivity"
             android:exported="false"/>
+        <activity android:name=".imedittext.IMEditTextActivity"
+            android:exported="false"/>
+        <activity android:name=".imedittext.ContactSelectActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>
