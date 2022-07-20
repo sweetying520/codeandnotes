@@ -1,0 +1,5 @@
+<resources>
+    <string name="refresh_no_more_data">No more to show</string>
+    <string name="status_error_tip" translatable="false">Sorry, load error</string>
+    <string name="status_empty_tip" translatable="false">Sorry, the content is empty</string>
+</resources>

@@ -46,6 +46,15 @@
                 android:onClick="@{smartEditTextClick}"
                 android:text="SmartEditText"
                 android:textAllCaps="false" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="5dp"
+                android:onClick="@{viewModel.baseQuickAdapterClick}"
+                android:text="BaseRecyclerViewAdapterHelper"
+                android:textAllCaps="false" />
         </LinearLayout>
 
     </ScrollView>

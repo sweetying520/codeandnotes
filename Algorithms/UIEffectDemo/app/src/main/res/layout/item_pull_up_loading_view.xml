@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tv"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:layout_margin="15dp"
+    android:background="@android:color/holo_green_dark"
+    android:gravity="center"
+    android:text="erdai666"
+    android:textColor="@color/white"
+    android:textSize="20dp"
+    tools:ignore="HardcodedText,SpUsage"/>

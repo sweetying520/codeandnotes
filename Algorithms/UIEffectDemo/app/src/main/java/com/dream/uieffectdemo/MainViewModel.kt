@@ -1,6 +1,7 @@
 package com.dream.uieffectdemo
 
 import android.app.Application
+import android.view.View
 import androidx.lifecycle.AndroidViewModel
 
 /**
@@ -11,4 +12,6 @@ import androidx.lifecycle.AndroidViewModel
  */
 class MainViewModel(application: Application): AndroidViewModel(application) {
 
+
+    var baseQuickAdapterClick: View.OnClickListener? = null
 }

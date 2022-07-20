@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    tools:ignore="RtlHardcoded">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <View
+            android:id="@+id/no_more_left_divider"
+            android:layout_width="48dp"
+            android:layout_height="1px"
+            android:background="#E2E5E9"
+            android:layout_marginLeft="24dp"
+            tools:ignore="RtlHardcoded" />
+
+        <TextView
+            android:id="@+id/no_more_product"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:textColor="#989FA9"
+            android:textSize="10dp"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:text="@string/refresh_no_more_data"/>
+
+
+        <View
+            android:id="@+id/no_more_right_divider"
+            android:layout_width="48dp"
+            android:layout_height="1px"
+            android:background="#E2E5E9"
+            android:layout_marginRight="24dp" />
+
+    </LinearLayout>
+
+</RelativeLayout>
+
+
+

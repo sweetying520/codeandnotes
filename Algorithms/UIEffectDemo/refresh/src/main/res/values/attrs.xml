@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="MaterialHeader">
+        <attr format="color" name="mhPrimaryColor"/>
+        <attr format="color" name="mhShadowColor"/>
+        <attr format="dimension" name="mhShadowRadius"/>
+        <attr format="boolean" name="mhShowBezierWave"/>
+    </declare-styleable>
+
+    <declare-styleable name="MaterialFooter">
+        <attr name="materialSpinnerStyle">
+            <enum name="Translate" value="0"/><!--平行移动-->
+            <enum name="Scale" value="1"/><!--拉伸形变-->
+            <enum name="FixedBehind" value="2"/><!--固定在背后-->
+        </attr>
+    </declare-styleable>
+</resources>
