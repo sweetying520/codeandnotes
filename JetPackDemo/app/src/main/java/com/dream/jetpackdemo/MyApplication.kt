@@ -1,6 +1,7 @@
 package com.dream.jetpackdemo
 
 import android.app.Application
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.*
 
@@ -12,8 +13,19 @@ import androidx.lifecycle.*
  */
 class MyApplication: Application() {
 
+
+    companion object {
+        var context: Application? = null
+        fun getContext(): Context {
+            return context!!
+        }
+
+    }
+
+
     override fun onCreate() {
         super.onCreate()
+        context = this
         ProcessLifecycleOwner.get().lifecycle.addObserver(ApplicationLifecycleObserver())
     }
 

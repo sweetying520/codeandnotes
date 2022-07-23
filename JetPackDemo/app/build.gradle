@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
+    id 'kotlin-parcelize'
 }
 
 android {
@@ -34,6 +35,10 @@ android {
     dataBinding{
         enabled = true
     }
+
+    viewBinding{
+        enabled = true
+    }
 }
 
 dependencies {
@@ -49,6 +54,9 @@ dependencies {
     kapt 'com.github.bumptech.glide:compiler:4.12.0'
 
     implementation "androidx.lifecycle:lifecycle-process:2.4.1"
+
+    implementation "androidx.room:room-ktx:2.4.2"
+    kapt "androidx.room:room-compiler:2.4.2"
 
 
 }

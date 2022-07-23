@@ -1,0 +1,7 @@
+{
+  "shopId": 1,
+  "account": "345",
+  "queueLength": 1,
+  "nickname": "erdai",
+  "text": "In queue, there are ${queueLength} people in front. Please wait，Session accessing. ${nickname} at your service"
+}

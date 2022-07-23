@@ -15,6 +15,7 @@ import com.dream.jetpackdemo.databinding.DataBindingActivity
 import com.dream.jetpackdemo.lifecycle.LifeCycleActivity
 import com.dream.jetpackdemo.lifecycle.MyLifecycleOwnerImplActivity
 import com.dream.jetpackdemo.livedata.LiveDataActivity
+import com.dream.jetpackdemo.room.RoomActivity
 import com.dream.jetpackdemo.viewmodel.MainViewModel
 import com.dream.jetpackdemo.viewmodel.ViewModelActivity
 
@@ -42,6 +43,10 @@ class MainActivity : AppCompatActivity() {
         startActivityInner<DataBindingActivity>(this)
     }
 
+    fun room(view: View) {
+        startActivityInner<RoomActivity>(this)
+    }
+
 
     override fun onDestroy() {
         super.onDestroy()
@@ -54,4 +59,6 @@ class MainActivity : AppCompatActivity() {
             context.startActivity(intent)
         }
     }
+
+
 }
