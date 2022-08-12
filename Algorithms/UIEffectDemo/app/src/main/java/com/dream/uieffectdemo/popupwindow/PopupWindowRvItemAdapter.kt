@@ -34,12 +34,13 @@ class PopupWindowRvItemAdapter(context: Context): RecyclerView.Adapter<PopupWind
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        Log.d("erdai", "onCreateViewHolder: ")
-        return MyViewHolder(layoutInflater?.inflate(R.layout.item_popupwindow_rv_view,parent,false)!!)
+        val myViewHolder = MyViewHolder(layoutInflater?.inflate(R.layout.item_popupwindow_rv_view, parent, false)!!)
+        Log.d("erdai", "onCreateViewHolder: ${myViewHolder.hashCode()}")
+        return myViewHolder
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        Log.d("erdai", "onBindViewHolder: $position")
+        Log.d("erdai", "onBindViewHolder: $position ${holder.hashCode()}")
         val str = mDataList?.get(position)
         if(str != null){
             holder.tvNickName?.text = "erdai666"

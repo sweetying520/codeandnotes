@@ -1,5 +1,6 @@
 package com.dream.uieffectdemo.baservadapterhelper
 
+import android.util.Log
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.dream.uieffectdemo.R
@@ -14,6 +15,7 @@ class PullUpLoadingAdapter: BaseQuickAdapter<String, BaseViewHolder>(R.layout.it
 
 
     override fun convert(helper: BaseViewHolder, item: String) {
+        Log.d("erdai", "convert: ${helper.hashCode()}")
         helper.setText(R.id.tv,item)
     }
 }
