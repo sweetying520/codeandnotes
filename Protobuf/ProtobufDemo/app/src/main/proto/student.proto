@@ -1,0 +1,46 @@
+//指定 Protobuf 版本
+syntax = "proto3";
+
+//指定包名
+package erdai;
+
+//定义一个学生的消息类
+message Student{
+  //姓名
+  string name = 1;
+  //年龄
+  int32 age = 2;
+  //邮箱
+  string email = 3;
+  //课程
+  repeated string course = 4;
+
+}
+
+//定义一个天气的消息类
+message Weather{
+  int32 query = 1;
+
+  //季节
+  enum Season{
+    option allow_alias = true;
+    //春
+    SPRING = 0;
+    //夏
+    SUMMER = 1;
+    //秋
+    FALL = 2;
+    AUTUMN = 2;
+    //冬
+    WINTER = 3;
+  }
+
+  Season season = 2;
+}
+
+//message Test{
+//  reserved 2,3,4,10 to 20; //保留字段编号
+//  reserved "erdai","666"; //保留字段名称
+//  string str = 2;
+//  string erdai = 1;
+//}
