@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:textAllCaps="false"
+        android:onClick="toFlutterActivity"
+        android:text="跳转 Flutter"
+        tools:ignore="HardcodedText,UsingOnClickInXml" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:textAllCaps="false"
+        android:onClick="showFlutterFragment"
+        android:text="展示 FlutterFragment"
+        tools:ignore="HardcodedText,UsingOnClickInXml" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:textAllCaps="false"
+        android:onClick="sendMsgToFlutter"
+        android:text="原生发消息给 Flutter"
+        tools:ignore="HardcodedText,UsingOnClickInXml" />
+
+    <TextView
+        android:id="@+id/tv"
+        android:paddingVertical="10dp"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="接收 Flutter 发送过来的参数：null"
+        tools:ignore="HardcodedText" />
+
+    <FrameLayout
+        android:id="@+id/fl_fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/purple_200"/>
+
+</LinearLayout>
