@@ -1,10 +1,22 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-void main() => runApp(getRouter(window.defaultRouteName));
+void main(){
+  //获取 Android 传过来的路由
+  String url = "main?{\"name\":\"erdai\",\"age\":18}";/*window.defaultRouteName*/;
+  //解析并获取路由名称
+  String routeName = url.substring(0,url.indexOf("?"));
+  //解析并将参数转换成一个 Map 对象
+  String paramsString = url.substring(url.indexOf("?") + 1);
+  Map<String,dynamic> paramsMap = json.decode(paramsString);
+  //打印参数
+  print(paramsMap);
+  runApp(getRouter(routeName));
+}
 
 void newMain() => runApp(MaterialApp(
   home: Scaffold(
@@ -21,28 +33,34 @@ void newMain() => runApp(MaterialApp(
   ),
 ));
 
-Widget getRouter(String name){
+Widget getRouter(String routeName){
   //name = "main?{\"name\":\"000\"}";
-  String url = name;
-  String routeName = !url.contains("?") ? url : url.substring(0,url.indexOf('?'));
-  String routeParams =  !url.contains("?") ? url : url.substring(url.indexOf("?") + 1);
-  Map<String,dynamic> params = json.decode(routeParams);
-  print(routeName);
-  params.forEach((key, value) {
-    print('$key  $value');
-  });
+  // String url = name;
+  // String routeName = !url.contains("?") ? url : url.substring(0,url.indexOf('?'));
+  // String routeParams =  !url.contains("?") ? url : url.substring(url.indexOf("?") + 1);
+  // Map<String,dynamic> params = json.decode(routeParams);
+  // print(routeName);
+  // params.forEach((key, value) {
+  //   print('$key  $value');
+  // });
   switch(routeName){
     case "main":
       return const MyApp();
     default:
       return MaterialApp(
-        title: "Flutter Demo",
-        theme: ThemeData(
-          primarySwatch: Colors.blue
-        ),
-        home: Container(
-          alignment: Alignment.center,
-          child: Text("not found page $name"),
+        home: Scaffold(
+          appBar: AppBar(
+            title: const Text("Flutter Demo Home Page"),
+          ),
+          body: const Center(
+            child: Text(
+              "page not found",
+              style: TextStyle(
+                fontSize: 24,
+                color: Colors.red
+              ),
+            ),
+          ),
         ),
       );
   }
@@ -67,7 +85,7 @@ class MyApp extends StatelessWidget {
         // counter didn't reset back to zero; the application is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page2'),
+      home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
@@ -92,38 +110,91 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  dynamic electricity;
   final _channel = const MethodChannel("com.dream.interactive");
+  dynamic _content;
 
-  String _data = "默认";
+  final _eventChannel = const EventChannel("com.dream.eventchannel");
+  StreamSubscription? _streamSubscription;
+
+  final _messageChannel = const BasicMessageChannel("com.dream.messagechannel", StringCodec());
+
 
 
   @override
   void initState() {
     super.initState();
+    _messageChannel.setMessageHandler((message) =>Future<String>((){
+      print(message);
+      setState(() {
+        _content = message;
+      });
+      return "好啊";
+    }));
+
+
+    _streamSubscription = _eventChannel
+        .receiveBroadcastStream(["Hello，建立连接吧"])
+        .listen(_onData,onError: _onError,onDone: _onDone);
+
+
     _channel.setMethodCallHandler((call) async {
       String method = call.method;
       switch(method){
-        case "erdai":
+        case "timer":
           setState(() {
-            _data = call.arguments["key"];
+            _counter = call.arguments["count"];
           });
+          if(_counter == 5){
+            _channel.invokeMethod("sendFinish");
+            break;
+          }
           break;
         default:
-          print('无匹配的方法');
           break;
       }
     });
   }
 
-  void _incrementCounter() {
+  void _onData(event){
+    print(event);
     setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-      _channel.invokeMethod("_incrementCounter",_counter);
+      electricity = event;
+    });
+  }
+
+  void _onError(error){
+    print(error);
+  }
+
+  void _onDone(){
+    print('_onDone');
+  }
+
+
+  @override
+  void dispose() {
+    if(_streamSubscription != null){
+      _streamSubscription?.cancel();
+      _streamSubscription = null;
+
+    }
+  }
+
+  void _incrementCounter() async{
+    // setState(() {
+    //   // This call to setState tells the Flutter framework that something has
+    //   // changed in this State, which causes it to rerun the build method below
+    //   // so that the display can reflect the updated values. If we changed
+    //   // _counter without calling setState(), then the build method would not be
+    //   // called again, and so nothing would appear to happen.
+    //   _counter++;
+    //   _channel.invokeMethod("_incrementCounter",_counter);
+    // });
+    var result = await _messageChannel.send("去爬哪座山?");
+    print("$result");
+    setState(() {
+      _content = result;
     });
   }
 
@@ -161,13 +232,11 @@ class _MyHomePageState extends State<MyHomePage> {
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(_data),
-            SizedBox(height: 20),
             const Text(
               'You have pushed the button this many times:',
             ),
             Text(
-              '$_counter',
+              '$_content',
               style: Theme.of(context).textTheme.headline4,
             ),
           ],
