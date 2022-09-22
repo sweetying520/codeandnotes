@@ -14,7 +14,7 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="MyTheme" parent="Theme.AndroidAndFlutterInteractive">
+    <style name="MyTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:windowIsTranslucent">true</item>
     </style>
 </resources>
