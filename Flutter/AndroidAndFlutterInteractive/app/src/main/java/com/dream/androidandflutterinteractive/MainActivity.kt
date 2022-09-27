@@ -2,22 +2,12 @@ package com.dream.androidandflutterinteractive
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.TextView
-import androidx.fragment.app.Fragment
-import io.flutter.embedding.android.FlutterActivity
-import io.flutter.embedding.android.FlutterActivityLaunchConfigs
-import io.flutter.embedding.android.FlutterFragment
-import io.flutter.embedding.android.FlutterView
+import androidx.appcompat.app.AppCompatActivity
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.embedding.engine.FlutterEngineCache
 import io.flutter.embedding.engine.dart.DartExecutor
-import io.flutter.plugin.common.MethodChannel
-import java.util.*
-import kotlin.concurrent.timerTask
 
 class MainActivity : AppCompatActivity() {
 
