@@ -1,0 +1,67 @@
+plugins {
+    id 'groovy'
+    id 'maven-publish'
+    id 'java-gradle-plugin'
+}
+
+repositories {
+    google()
+    mavenCentral()
+}
+
+
+dependencies {
+    //使用项目 gradle wrapper 中指定的 Gradle 版本，插件中使用的 Project 等来自这里
+    implementation gradleApi()
+    //使用本地的 groovy
+    implementation localGroovy()
+    //依赖 transform 相关 API，新版 Google 给我们提供了 AsmClassVisitorFactory
+    //noinspection GradleDependency
+    implementation "com.android.tools.build:gradle-api:7.2.0"
+    //依赖 APG 源码
+    implementation "com.android.tools.build:gradle:7.2.0"
+    //注解
+    implementation 'org.jetbrains:annotations:16.0.2'
+
+    //asm
+    implementation 'org.ow2.asm:asm:9.2'
+    implementation 'org.ow2.asm:asm-util:9.2'
+    implementation 'org.ow2.asm:asm-commons:9.2'
+}
+
+def groupName = 'com.dream'
+def artifactName = 'customtransformplugin'
+def versionName = '1.0.6'
+
+task sourceJar(type: Jar) {
+    archiveClassifier.set('sources')
+    from sourceSets.main.java.srcDirs
+}
+
+publishing {
+    publications {
+        debug(MavenPublication) {
+            groupId = groupName
+            artifactId = artifactName
+            version = versionName
+            from components.java
+            artifact sourceJar
+        }
+    }
+    // 添加仓库地址
+    repositories {
+        maven { url uri('../customtransformplugin') }
+    }
+}
+
+//Gradle 配置的方式注册插件
+gradlePlugin {
+    plugins {
+        greeting {
+            // 插件id
+            id = 'MyTransformPlugin'
+            // 插件实现类
+            implementationClass = 'com.dream.customtransformplugin.MyTransformPlugin'
+        }
+    }
+}
