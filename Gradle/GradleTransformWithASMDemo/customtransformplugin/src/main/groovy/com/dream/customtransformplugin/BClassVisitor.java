@@ -10,7 +10,6 @@ import org.objectweb.asm.commons.AdviceAdapter;
 class BClassVisitor extends ClassVisitor {
 
     private boolean isOpen;
-    private int startLocalIndex;
 
     BClassVisitor(ClassVisitor nextVisitor) {
         super(Opcodes.ASM5, nextVisitor);
@@ -41,15 +40,14 @@ class BClassVisitor extends ClassVisitor {
                     return;
                 }
                 visitMethodInsn(INVOKESTATIC, "android/os/SystemClock", "elapsedRealtime", "()J", false);
-                startLocalIndex = newLocal(Type.LONG_TYPE);
-                visitVarInsn(LSTORE, startLocalIndex);
+                visitVarInsn(LSTORE, 2);
                 visitLdcInsn("erdai");
                 visitTypeInsn(NEW, "java/lang/StringBuilder");
                 visitInsn(DUP);
                 visitMethodInsn(INVOKESPECIAL, "java/lang/StringBuilder", "<init>", "()V", false);
                 visitLdcInsn("\u5f00\u59cb\u65f6\u95f4: ");
                 visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/String;)Ljava/lang/StringBuilder;", false);
-                visitVarInsn(LLOAD, startLocalIndex);
+                visitVarInsn(LLOAD, 2);
                 visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(J)Ljava/lang/StringBuilder;", false);
                 visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "toString", "()Ljava/lang/String;", false);
                 visitMethodInsn(INVOKESTATIC, "android/util/Log", "d", "(Ljava/lang/String;Ljava/lang/String;)I", false);
@@ -64,29 +62,29 @@ class BClassVisitor extends ClassVisitor {
                     return;
                 }
                 visitMethodInsn(INVOKESTATIC, "android/os/SystemClock", "elapsedRealtime", "()J", false);
-                visitVarInsn(LSTORE, startLocalIndex);
+                visitVarInsn(LSTORE, 4);
                 visitLdcInsn("erdai");
                 visitTypeInsn(NEW, "java/lang/StringBuilder");
                 visitInsn(DUP);
                 visitMethodInsn(INVOKESPECIAL, "java/lang/StringBuilder", "<init>", "()V", false);
                 visitLdcInsn("\u7ed3\u675f\u65f6\u95f4: ");
                 visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/String;)Ljava/lang/StringBuilder;", false);
-                visitVarInsn(LLOAD, startLocalIndex);
+                visitVarInsn(LLOAD, 4);
                 visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(J)Ljava/lang/StringBuilder;", false);
                 visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "toString", "()Ljava/lang/String;", false);
                 visitMethodInsn(INVOKESTATIC, "android/util/Log", "d", "(Ljava/lang/String;Ljava/lang/String;)I", false);
                 visitInsn(POP);
-                visitVarInsn(LLOAD, startLocalIndex);
-                visitVarInsn(LLOAD, startLocalIndex);
+                visitVarInsn(LLOAD, 4);
+                visitVarInsn(LLOAD, 2);
                 visitInsn(LSUB);
-                visitVarInsn(LSTORE, startLocalIndex);
+                visitVarInsn(LSTORE, 6);
                 visitLdcInsn("erdai");
                 visitTypeInsn(NEW, "java/lang/StringBuilder");
                 visitInsn(DUP);
                 visitMethodInsn(INVOKESPECIAL, "java/lang/StringBuilder", "<init>", "()V", false);
                 visitLdcInsn("onCreate\u65b9\u6cd5\u8017\u65f6");
                 visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/String;)Ljava/lang/StringBuilder;", false);
-                visitVarInsn(LLOAD, startLocalIndex);
+                visitVarInsn(LLOAD, 6);
                 visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(J)Ljava/lang/StringBuilder;", false);
                 visitLdcInsn("\u6beb\u79d2");
                 visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/String;)Ljava/lang/StringBuilder;", false);
