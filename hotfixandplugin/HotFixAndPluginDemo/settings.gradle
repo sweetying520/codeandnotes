@@ -1,0 +1,3 @@
+rootProject.name = "HotFixAndPluginDemo"
+include ':app'
+include ':pluginapk'
