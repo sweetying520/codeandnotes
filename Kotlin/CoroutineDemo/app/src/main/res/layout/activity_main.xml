@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="HardcodedText,UsingOnClickInXml">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.dream.coroutinedemo.viewmodel.MainViewModel" />
+
+
+        <variable
+            name="testClick"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="testFlow"
+            type="android.view.View.OnClickListener" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginHorizontal="20dp"
+        tools:context=".MainActivity">
+
+        <TextView
+            android:id="@+id/tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/holo_red_light"
+            android:layout_gravity="center_horizontal"
+            tools:text="test"
+            android:textSize="30sp"
+            android:padding="15dp"
+            android:text="@{viewModel.friendJsonLiveData}" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textAllCaps="false"
+            android:text="getFriendJson"
+            android:onClick="btnClick" />
+
+
+        <Button
+            android:id="@+id/btn_test"
+            android:text="测试"
+            android:onClick="@{testClick}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btn_test1"
+            android:text="测试1"
+            android:onClick="@{()->viewModel.testClick1()}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tvTestFlow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:textSize="30sp"
+            android:layout_gravity="center_horizontal"
+            tools:text="test flow"/>
+
+        <Button
+            android:text="测试3：flow"
+            android:textAllCaps="false"
+            android:onClick="@{testFlow}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+</layout>
