@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:padding="20dp"
+    tools:context=".MainActivity">
+
+
+    <TextView
+        android:id="@+id/tvMain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="test"
+        android:textSize="20sp"
+        android:layout_marginBottom="20dp" />
+
+    <Button
+        android:id="@+id/btnMain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="toSecondActivity"
+        android:onClick="toSecondActivity"
+        android:textAllCaps="false"
+        tools:ignore="HardcodedText,UsingOnClickInXml" />
+
+    <Button
+        android:id="@+id/btnMainCustom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="toSecondActivityWithCustomContract"
+        android:onClick="toSecondActivityWithCustomContract"
+        android:textAllCaps="false"
+        tools:ignore="HardcodedText,UsingOnClickInXml" />
+
+    <Button
+        android:id="@+id/btnRequestPermission"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="requestPermission"
+        android:onClick="requestPermission"
+        android:textAllCaps="false"
+        tools:ignore="HardcodedText,UsingOnClickInXml" />
+
+    <Button
+        android:id="@+id/btnRequestMultiplePermission"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="requestMultiplePermission"
+        android:onClick="requestMultiplePermission"
+        android:textAllCaps="false"
+        tools:ignore="HardcodedText,UsingOnClickInXml" />
+
+    <Button
+        android:id="@+id/btnTakePicturePreview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="takePicturePreview"
+        android:onClick="takePicturePreview"
+        android:textAllCaps="false"
+        tools:ignore="HardcodedText,UsingOnClickInXml" />
+
+    <ImageView
+        android:id="@+id/ivPreview"
+        android:contentDescription="@null"
+        android:layout_width="200dp"
+        android:layout_marginTop="20dp"
+        android:layout_height="200dp"
+        android:scaleType="fitXY"
+        android:src="@android:color/holo_green_light"/>
+
+</LinearLayout>
