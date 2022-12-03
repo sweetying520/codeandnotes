@@ -1,0 +1,44 @@
+apply plugin: 'AndResGuard'
+
+andResGuard {
+
+    //1、启用签名。为 true 时，需要配置 signConfig
+    useSign = true
+    //2、keepRoot 为 true 时，会 keep 住所有资源的原始路径，只混淆资源的名字
+    keepRoot = true
+    //3、白名单，指定不被混淆的资源文件，支持通配符，【+】代表 1 个或多个，【?】代表 0 个或 1 个，【*】代表 0 个或多个
+    whiteList = [
+           "R.mipmap.ic_launcher"
+    ]
+    //4、配置需要压缩的文件的匹配规则，一般这里不需要动。支持 ? + * 通配符
+    compressFilePattern = [
+            "*.png",
+            "*.jpg",
+            "*.jpeg",
+            "*.gif",
+    ]
+
+    //5、配置7zip，只需设置 artifact 或 path；支持同时设置，但此时以 path 的值为优先
+    //    sevenzip {
+    //        //artifact = 'com.tencent.mm:SevenZip:1.2.21'
+    //        //path = "/usr/local/bin/7za"
+    //    }
+
+    //6、用于 keep 住资源路径的 mapping 文件所在路径不被混淆
+    //mappingFile = file("./resource_mapping.txt")
+
+    //7、启用 7zip 压缩。为true时，useSign 必须为 true
+    //use7zip = false
+
+    //8、设置这个值，会把 arsc name 列混淆成相同的名字，减少 string 常量池的大小
+    //fixedResName = "arg"
+
+    //9、为 true 时会合并所有哈希值相同的资源，但请不要过度依赖这个功能去除去冗余资源
+    //mergeDuplicatedRes = true
+
+    //10、可选，指定生成的apk的保存路径
+    // finalApkBackupPath = "${project.rootDir}/final.apk"
+
+    //11、可选: 指定v1签名时生成jar文件的摘要算法，默认值为“SHA-1”
+    // digestalg = "SHA-256"
+}

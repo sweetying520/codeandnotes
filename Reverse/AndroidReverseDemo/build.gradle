@@ -3,12 +3,21 @@
 
 buildscript {
     repositories {
-        google()
         mavenCentral()
+        google()
+        maven {
+            url 'https://maven.aliyun.com/repository/jcenter'
+        }
     }
 
     dependencies {
         classpath 'com.android.tools.build:gradle:7.3.1'
+        //AndResGuard，兼容 AGP 7.0
+        classpath 'io.github.leon406:AndResGuard-gradle-plugin:1.2.22.6'
+        //AndResGuard
+        //classpath 'com.tencent.mm:AndResGuard-gradle-plugin:1.2.21'
+        //AabResGuard
+        classpath "com.bytedance.android:aabresguard-plugin:0.1.8"
     }
 }
 

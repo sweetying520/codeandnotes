@@ -2,6 +2,9 @@ plugins {
     id 'com.android.application'
 }
 
+apply from: '../andresguard.gradle'
+apply from: '../aabresguard.gradle'
+
 android {
     namespace 'com.dream.androidreversedemo'
     compileSdk 32
