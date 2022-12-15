@@ -14,6 +14,7 @@ import com.dream.uieffectdemo.baservadapterhelper.BaseRvAdapterHelperActivity
 import com.dream.uieffectdemo.databinding.ActivityMainBinding
 import com.dream.uieffectdemo.imedittext.IMEditTextActivity
 import com.dream.uieffectdemo.popupwindow.PopupWindowActivity
+import com.dream.uieffectdemo.text.TextActivity
 import com.dream.uieffectdemo.utils.JsonFileReader
 
 
@@ -72,6 +73,10 @@ class MainActivity : AppCompatActivity() {
 
         mViewModel?.baseQuickAdapterClick = View.OnClickListener {
             startActivityInner<BaseRvAdapterHelperActivity>(this)
+        }
+
+        mBinding?.textClick = View.OnClickListener {
+            startActivityInner<TextActivity>(this)
         }
     }
 

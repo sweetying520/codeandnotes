@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!--序号-->
+    <com.dream.uieffectdemo.text.CustomText
+        android:id="@+id/tvSerial"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:drawableStart="@drawable/shape_dot"
+        tools:text="1."/>
+
+
+    <!--内容-->
+    <com.dream.uieffectdemo.text.CustomText
+        android:id="@+id/tvContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="This promo is over. Please check \nsfjaiojfoijfopijweoifjqo\niwejfiwoewjifjoiqwe\njfoiejqwfijeoiqwjfoiqewjf"/>
+
+
+</LinearLayout>

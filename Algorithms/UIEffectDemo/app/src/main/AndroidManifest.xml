@@ -15,7 +15,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.UIEffectDemo"
         tools:targetApi="31">
-
+        <activity
+            android:name=".TextActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -25,17 +31,25 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".popupwindow.PopupWindowActivity"
-            android:exported="false"/>
-        <activity android:name=".imedittext.IMEditTextActivity"
-            android:exported="false"/>
-        <activity android:name=".imedittext.ContactSelectActivity"
+        <activity
+            android:name=".popupwindow.PopupWindowActivity"
+            android:exported="false" />
+        <activity
+            android:name=".imedittext.IMEditTextActivity"
+            android:exported="false" />
+        <activity
+            android:name=".imedittext.ContactSelectActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
-        <activity android:name=".baservadapterhelper.BaseRvAdapterHelperActivity"
+        <activity
+            android:name=".baservadapterhelper.BaseRvAdapterHelperActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
-        <activity android:name=".baservadapterhelper.PullUpLoadingActivity"
+        <activity
+            android:name=".baservadapterhelper.PullUpLoadingActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity android:name=".text.TextActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
     </application>

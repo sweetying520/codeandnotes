@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CustomText">
+        <attr name="fontSize">
+            <enum name="font_32" value="32"/>
+            <enum name="font_28" value="28"/>
+            <enum name="font_24" value="24"/>
+            <enum name="font_20" value="20"/>
+            <enum name="font_18" value="18"/>
+            <enum name="font_16" value="16"/>
+            <enum name="font_14" value="14"/>
+            <enum name="font_12" value="12"/>
+            <enum name="font_11" value="11"/>
+            <enum name="font_10" value="10"/>
+        </attr>
+    </declare-styleable>
+
+
+    <declare-styleable name="FormatTextView">
+        <attr name="fontUnit">
+            <enum name="font_32" value="32"/>
+            <enum name="font_28" value="28"/>
+            <enum name="font_24" value="24"/>
+            <enum name="font_20" value="20"/>
+            <enum name="font_18" value="18"/>
+            <enum name="font_16" value="16"/>
+            <enum name="font_14" value="14"/>
+            <enum name="font_12" value="12"/>
+            <enum name="font_11" value="11"/>
+            <enum name="font_10" value="10"/>
+        </attr>
+        <attr name="dotColor" format="color"/>
+        <attr name="fontColor" format="color"/>
+    </declare-styleable>
+
+</resources>

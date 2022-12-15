@@ -15,6 +15,10 @@
         <variable
             name="smartEditTextClick"
             type="android.view.View.OnClickListener" />
+
+        <variable
+            name="textClick"
+            type="android.view.View.OnClickListener" />
     </data>
 
     <ScrollView
@@ -54,6 +58,15 @@
                 android:layout_marginVertical="5dp"
                 android:onClick="@{viewModel.baseQuickAdapterClick}"
                 android:text="BaseRecyclerViewAdapterHelper"
+                android:textAllCaps="false" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="5dp"
+                android:onClick="@{textClick}"
+                android:text="TextActivity"
                 android:textAllCaps="false" />
         </LinearLayout>
 

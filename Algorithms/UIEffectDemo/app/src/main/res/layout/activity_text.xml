@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".text.TextActivity"
+    tools:ignore="HardcodedText" >
+
+<!--    <com.dream.uieffectdemo.text.CustomText-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:fontFamily="@font/roboto_medium"-->
+<!--        android:text="Type is Beautiful,Type isBeautiful"-->
+<!--        app:fontSize="font_32"/>-->
+
+<!--    <com.dream.uieffectdemo.text.CustomText-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:fontFamily="@font/roboto_medium"-->
+<!--        android:text="Type is Beautiful,Type isBeautiful"-->
+<!--        app:fontSize="font_28"/>-->
+
+<!--    <com.dream.uieffectdemo.text.CustomText-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:fontFamily="@font/roboto_medium"-->
+<!--        android:text="Type is Beautiful,Type isBeautiful"-->
+<!--        app:fontSize="font_24"/>-->
+
+<!--    <com.dream.uieffectdemo.text.CustomText-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:fontFamily="@font/roboto_medium"-->
+<!--        android:text="Type is Beautiful,Type isBeautiful"-->
+<!--        app:fontSize="font_20"/>-->
+
+<!--    <com.dream.uieffectdemo.text.CustomText-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:fontFamily="@font/roboto_medium"-->
+<!--        android:text="Type is Beautiful,Type isBeautiful"-->
+<!--        app:fontSize="font_18"/>-->
+
+<!--    <com.dream.uieffectdemo.text.CustomText-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:fontFamily="@font/roboto_medium"-->
+<!--        android:text="Type is Beautiful,Type isBeautiful"-->
+<!--        app:fontSize="font_16"/>-->
+
+<!--    <com.dream.uieffectdemo.text.CustomText-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:fontFamily="@font/roboto_medium"-->
+<!--        android:text="Type is Beautiful,Type isBeautiful"-->
+<!--        app:fontSize="font_14"/>-->
+
+<!--    <com.dream.uieffectdemo.text.CustomText-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:fontFamily="@font/roboto_medium"-->
+<!--        android:text="Type is Beautiful,Type isBeautiful"-->
+<!--        app:fontSize="font_12" />-->
+
+<!--    <com.dream.uieffectdemo.text.CustomText-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:fontFamily="@font/roboto_medium"-->
+<!--        android:text="Type is Beautiful,Type isBeautiful"-->
+<!--        app:fontSize="font_11"/>-->
+
+<!--    <com.dream.uieffectdemo.text.CustomText-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:fontFamily="@font/roboto_medium"-->
+<!--        android:text="Type is Beautiful,Type isBeautiful"-->
+<!--        app:fontSize="font_10"/>-->
+
+    <com.dream.uieffectdemo.text.FormatTextView
+        android:id="@+id/formatTextView"
+        app:fontUnit="font_18"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
