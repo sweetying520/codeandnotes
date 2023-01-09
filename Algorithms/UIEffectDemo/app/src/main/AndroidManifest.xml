@@ -16,6 +16,34 @@
         android:theme="@style/Theme.UIEffectDemo"
         tools:targetApi="31">
         <activity
+            android:name=".PartAndOrderAndUnOrderActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".FontBoldActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".FontMediumActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".FontRegularActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".TextActivity"
             android:exported="false">
             <meta-data
@@ -49,9 +77,14 @@
             android:name=".baservadapterhelper.PullUpLoadingActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
-        <activity android:name=".text.TextActivity"
+        <activity
+            android:name=".text.TextActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
+        <activity android:name=".text.ui_accept.FontRegularActivity" />
+        <activity android:name=".text.ui_accept.FontBoldActivity" />
+        <activity android:name=".text.ui_accept.FontMediumActivity" />
+        <activity android:name=".text.ui_accept.PartAndOrderAndUnOrderActivity" />
     </application>
 
 </manifest>

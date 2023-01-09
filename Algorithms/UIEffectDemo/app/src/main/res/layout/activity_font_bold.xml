@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".text.ui_accept.FontRegularActivity"
+    tools:ignore="HardcodedText,SpUsage">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:navigationIcon="@drawable/ic_back"
+        app:title="sweet font bold"
+        app:titleTextAppearance="@style/TitleStyle" />
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#EFF2F6"
+        android:overScrollMode="never"
+        android:padding="16dp"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/roboto_bold"
+                android:text="sweet font_32_regular"
+                android:textSize="16dp" />
+
+
+            <com.dream.uieffectdemo.text.CustomText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:fontFamily="@font/roboto_bold"
+                android:text="Type is Beautiful,Type is Beautiful"
+                app:fontSize="font_32" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/roboto_bold"
+                android:text="sweet font_28_regular"
+                android:textSize="16dp" />
+
+
+            <com.dream.uieffectdemo.text.CustomText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:fontFamily="@font/roboto_bold"
+                android:text="Type is Beautiful,Type is Beautiful"
+                app:fontSize="font_28" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/roboto_bold"
+                android:text="sweet font_24_regular"
+                android:textSize="16dp" />
+
+
+            <com.dream.uieffectdemo.text.CustomText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:fontFamily="@font/roboto_bold"
+                android:text="Type is Beautiful,Type is Beautiful"
+                app:fontSize="font_24" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/roboto_bold"
+                android:text="sweet font_20_regular"
+                android:textSize="16dp" />
+
+
+            <com.dream.uieffectdemo.text.CustomText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:fontFamily="@font/roboto_bold"
+                android:text="Type is Beautiful,Type is Beautiful"
+                app:fontSize="font_20" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/roboto_bold"
+                android:text="sweet font_18_regular"
+                android:textSize="16dp" />
+
+
+            <com.dream.uieffectdemo.text.CustomText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:fontFamily="@font/roboto_bold"
+                android:text="Type is Beautiful,Type is Beautiful"
+                app:fontSize="font_18" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/roboto_bold"
+                android:text="sweet font_16_regular"
+                android:textSize="16dp" />
+
+
+            <com.dream.uieffectdemo.text.CustomText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:fontFamily="@font/roboto_bold"
+                android:text="Type is Beautiful,Type is Beautiful"
+                app:fontSize="font_16" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/roboto_bold"
+                android:text="sweet font_14_regular"
+                android:textSize="16dp" />
+
+
+            <com.dream.uieffectdemo.text.CustomText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:fontFamily="@font/roboto_bold"
+                android:text="Type is Beautiful,Type is Beautiful"
+                app:fontSize="font_14" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/roboto_bold"
+                android:text="sweet font_12_regular"
+                android:textSize="16dp" />
+
+
+            <com.dream.uieffectdemo.text.CustomText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:fontFamily="@font/roboto_bold"
+                android:text="Type is Beautiful,Type is Beautiful"
+                app:fontSize="font_12" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/roboto_bold"
+                android:text="sweet font_11_regular"
+                android:textSize="16dp" />
+
+
+            <com.dream.uieffectdemo.text.CustomText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:fontFamily="@font/roboto_bold"
+                android:text="Type is Beautiful,Type is Beautiful"
+                app:fontSize="font_11" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/roboto_bold"
+                android:text="sweet font_10_regular"
+                android:textSize="16dp" />
+
+
+            <com.dream.uieffectdemo.text.CustomText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:fontFamily="@font/roboto_bold"
+                android:text="Type is Beautiful,Type is Beautiful"
+                app:fontSize="font_10" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

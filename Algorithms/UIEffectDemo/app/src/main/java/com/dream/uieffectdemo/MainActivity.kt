@@ -15,6 +15,10 @@ import com.dream.uieffectdemo.databinding.ActivityMainBinding
 import com.dream.uieffectdemo.imedittext.IMEditTextActivity
 import com.dream.uieffectdemo.popupwindow.PopupWindowActivity
 import com.dream.uieffectdemo.text.TextActivity
+import com.dream.uieffectdemo.text.ui_accept.FontBoldActivity
+import com.dream.uieffectdemo.text.ui_accept.FontMediumActivity
+import com.dream.uieffectdemo.text.ui_accept.FontRegularActivity
+import com.dream.uieffectdemo.text.ui_accept.PartAndOrderAndUnOrderActivity
 import com.dream.uieffectdemo.utils.JsonFileReader
 
 
@@ -77,6 +81,22 @@ class MainActivity : AppCompatActivity() {
 
         mBinding?.textClick = View.OnClickListener {
             startActivityInner<TextActivity>(this)
+        }
+
+        mBinding?.regular = View.OnClickListener {
+            startActivityInner<FontRegularActivity>(this)
+        }
+
+        mBinding?.medium = View.OnClickListener {
+            startActivityInner<FontMediumActivity>(this)
+        }
+
+        mBinding?.bold = View.OnClickListener {
+            startActivityInner<FontBoldActivity>(this)
+        }
+
+        mBinding?.partAndOrderAndUnOrder = View.OnClickListener {
+            startActivityInner<PartAndOrderAndUnOrderActivity>(this)
         }
     }
 

@@ -122,16 +122,16 @@ class FormatTextView: LinearLayout {
      */
     private fun getDotSize(fontUnit: Int): Int {
         return when(fontUnit){
-            FontSize.FONT_SIZE_32 -> SizeUtils.dp2px(12f)
-            FontSize.FONT_SIZE_28 -> SizeUtils.dp2px(11f)
-            FontSize.FONT_SIZE_24 -> SizeUtils.dp2px(10f)
-            FontSize.FONT_SIZE_20 -> SizeUtils.dp2px(9f)
-            FontSize.FONT_SIZE_18 -> SizeUtils.dp2px(8f)
-            FontSize.FONT_SIZE_16 -> SizeUtils.dp2px(7f)
-            FontSize.FONT_SIZE_14 -> SizeUtils.dp2px(6f)
-            FontSize.FONT_SIZE_12 -> SizeUtils.dp2px(5f)
-            FontSize.FONT_SIZE_11 -> SizeUtils.dp2px(4f)
-            FontSize.FONT_SIZE_10 -> SizeUtils.dp2px(3f)
+            FontSize.FONT_SIZE_32 -> SizeUtils.dp2px(10f)
+            FontSize.FONT_SIZE_28 -> SizeUtils.dp2px(9f)
+            FontSize.FONT_SIZE_24 -> SizeUtils.dp2px(8f)
+            FontSize.FONT_SIZE_20 -> SizeUtils.dp2px(7f)
+            FontSize.FONT_SIZE_18 -> SizeUtils.dp2px(6f)
+            FontSize.FONT_SIZE_16 -> SizeUtils.dp2px(5f)
+            FontSize.FONT_SIZE_14 -> SizeUtils.dp2px(4f)
+            FontSize.FONT_SIZE_12 -> SizeUtils.dp2px(3f)
+            FontSize.FONT_SIZE_11 -> SizeUtils.dp2px(2f)
+            FontSize.FONT_SIZE_10 -> SizeUtils.dp2px(1f)
             else -> SizeUtils.dp2px(2f)
         }
     }

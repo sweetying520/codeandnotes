@@ -19,6 +19,22 @@
         <variable
             name="textClick"
             type="android.view.View.OnClickListener" />
+
+        <variable
+            name="regular"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="medium"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="bold"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="partAndOrderAndUnOrder"
+            type="android.view.View.OnClickListener" />
     </data>
 
     <ScrollView
@@ -40,7 +56,8 @@
                 android:layout_marginVertical="5dp"
                 android:onClick="@{popupWindowClick}"
                 android:text="PopupWindow"
-                android:textAllCaps="false" />
+                android:textAllCaps="false"
+                android:visibility="visible"/>
 
             <Button
                 android:layout_width="match_parent"
@@ -49,7 +66,8 @@
                 android:layout_marginVertical="5dp"
                 android:onClick="@{smartEditTextClick}"
                 android:text="SmartEditText"
-                android:textAllCaps="false" />
+                android:textAllCaps="false"
+                android:visibility="visible"/>
 
             <Button
                 android:layout_width="match_parent"
@@ -58,7 +76,8 @@
                 android:layout_marginVertical="5dp"
                 android:onClick="@{viewModel.baseQuickAdapterClick}"
                 android:text="BaseRecyclerViewAdapterHelper"
-                android:textAllCaps="false" />
+                android:textAllCaps="false"
+                android:visibility="visible"/>
 
             <Button
                 android:layout_width="match_parent"
@@ -67,7 +86,45 @@
                 android:layout_marginVertical="5dp"
                 android:onClick="@{textClick}"
                 android:text="TextActivity"
+                android:textAllCaps="false"
+                android:visibility="visible"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="5dp"
+                android:onClick="@{regular}"
+                android:text="sweet font regular"
                 android:textAllCaps="false" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="5dp"
+                android:onClick="@{medium}"
+                android:text="sweet font medium"
+                android:textAllCaps="false" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="5dp"
+                android:onClick="@{bold}"
+                android:text="sweet font bold"
+                android:textAllCaps="false" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="5dp"
+                android:onClick="@{partAndOrderAndUnOrder}"
+                android:text="段落间距/有序列表/无序列表"
+                android:textAllCaps="false" />
+
         </LinearLayout>
 
     </ScrollView>
