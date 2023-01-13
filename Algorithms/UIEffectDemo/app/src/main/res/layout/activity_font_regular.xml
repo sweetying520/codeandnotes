@@ -48,6 +48,19 @@
             app:fontSize="font_32"
             android:layout_marginBottom="24dp"/>
 
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Type is Beautiful,Type is Beautiful"-->
+<!--            android:textSize="32dp"-->
+<!--            android:textColor="#333333"-->
+<!--            android:includeFontPadding="false"-->
+<!--            android:paddingTop="1.2dp"-->
+<!--            android:paddingBottom="1.2dp"-->
+<!--            android:lineSpacingExtra="2dp"-->
+<!--            android:letterSpacing="0.0053"-->
+<!--            android:layout_marginBottom="24dp"/>-->
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -76,7 +89,7 @@
         <com.dream.uieffectdemo.text.CustomText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Type is Beautiful,Type is Beautiful"
+            android:text="Type is Beautiful,Type is Beautiful,Type is Beautiful"
             app:fontSize="font_24"
             android:layout_marginBottom="24dp"/>
 
@@ -92,7 +105,7 @@
         <com.dream.uieffectdemo.text.CustomText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Type is Beautiful,Type is Beautiful"
+            android:text="Type is Beautiful,Type is Beautiful,Type is Beautiful,Type is Beautiful"
             app:fontSize="font_20"
             android:layout_marginBottom="24dp"/>
 
@@ -108,7 +121,7 @@
         <com.dream.uieffectdemo.text.CustomText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Type is Beautiful,Type is Beautiful"
+            android:text="Type is Beautiful,Type is Beautiful,Type is Beautiful,Type is Beautiful"
             app:fontSize="font_18"
             android:layout_marginBottom="24dp"/>
 
@@ -124,7 +137,7 @@
         <com.dream.uieffectdemo.text.CustomText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Type is Beautiful,Type is Beautiful"
+            android:text="Type is Beautiful,Type is Beautiful,Type is Beautiful,Type is Beautiful"
             app:fontSize="font_16"
             android:layout_marginBottom="24dp"/>
 
@@ -140,7 +153,7 @@
         <com.dream.uieffectdemo.text.CustomText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Type is Beautiful,Type is Beautiful"
+            android:text="Type is Beautiful,Type is Beautiful,Type is Beautiful,Type is Beautiful"
             app:fontSize="font_14"
             android:layout_marginBottom="24dp"/>
 
@@ -156,7 +169,7 @@
         <com.dream.uieffectdemo.text.CustomText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Type is Beautiful,Type is Beautiful"
+            android:text="Type is Beautiful,Type is Beautiful,Type is Beautiful,Type is Beautiful,Type is Beautiful,Type is Beautiful"
             app:fontSize="font_12"
             android:layout_marginBottom="24dp"/>
 
@@ -172,7 +185,7 @@
         <com.dream.uieffectdemo.text.CustomText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Type is Beautiful,Type is Beautiful"
+            android:text="Type is Beautiful,Type is Beautiful,Type is Beautiful,Type is Beautiful,Type is Beautiful,Type is Beautiful,Type is Beautiful"
             app:fontSize="font_11"
             android:layout_marginBottom="24dp"/>
 
@@ -188,7 +201,7 @@
         <com.dream.uieffectdemo.text.CustomText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Type is Beautiful,Type is Beautiful"
+            android:text="Type is Beautiful,Type is Beautiful,Type is Beautiful,Type is Beautiful,Type is Beautiful,Type is Beautiful,Type is Beautiful"
             app:fontSize="font_10"
             android:layout_marginBottom="24dp"/>
 

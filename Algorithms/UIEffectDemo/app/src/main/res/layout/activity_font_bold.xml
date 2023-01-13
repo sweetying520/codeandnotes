@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".text.ui_accept.FontRegularActivity"
+    tools:context=".text.ui_accept.FontBoldActivity"
     tools:ignore="HardcodedText,SpUsage">
 
     <androidx.appcompat.widget.Toolbar
@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:fontFamily="@font/roboto_bold"
-                android:text="sweet font_32_regular"
+                android:text="sweet font_32_bold"
                 android:textSize="16dp" />
 
 
@@ -43,16 +43,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
-                android:fontFamily="@font/roboto_bold"
                 android:text="Type is Beautiful,Type is Beautiful"
-                app:fontSize="font_32" />
+                app:fontSize="font_32"
+                app:fontType="bold"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:fontFamily="@font/roboto_bold"
-                android:text="sweet font_28_regular"
+                android:text="sweet font_28_bold"
                 android:textSize="16dp" />
 
 
@@ -60,16 +60,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
-                android:fontFamily="@font/roboto_bold"
                 android:text="Type is Beautiful,Type is Beautiful"
-                app:fontSize="font_28" />
+                app:fontSize="font_28"
+                app:fontType="bold"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:fontFamily="@font/roboto_bold"
-                android:text="sweet font_24_regular"
+                android:text="sweet font_24_bold"
                 android:textSize="16dp" />
 
 
@@ -77,16 +77,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
-                android:fontFamily="@font/roboto_bold"
-                android:text="Type is Beautiful,Type is Beautiful"
-                app:fontSize="font_24" />
+                android:text="Type is Beautiful,Type is Beautiful,Type is Beautiful"
+                app:fontSize="font_24"
+                app:fontType="bold"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:fontFamily="@font/roboto_bold"
-                android:text="sweet font_20_regular"
+                android:text="sweet font_20_bold"
                 android:textSize="16dp" />
 
 
@@ -94,16 +94,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
-                android:fontFamily="@font/roboto_bold"
-                android:text="Type is Beautiful,Type is Beautiful"
-                app:fontSize="font_20" />
+                android:text="Type is Beautiful,Type is Beautiful,Type is Beautiful,Type is Beautiful"
+                app:fontSize="font_20"
+                app:fontType="bold"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:fontFamily="@font/roboto_bold"
-                android:text="sweet font_18_regular"
+                android:text="sweet font_18_bold"
                 android:textSize="16dp" />
 
 
@@ -111,16 +111,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
-                android:fontFamily="@font/roboto_bold"
-                android:text="Type is Beautiful,Type is Beautiful"
-                app:fontSize="font_18" />
+                android:text="Type is Beautiful,Type is Beautiful,Type is Beautiful,Type is Beautiful"
+                app:fontSize="font_18"
+                app:fontType="bold"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:fontFamily="@font/roboto_bold"
-                android:text="sweet font_16_regular"
+                android:text="sweet font_16_bold"
                 android:textSize="16dp" />
 
 
@@ -128,16 +128,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
-                android:fontFamily="@font/roboto_bold"
-                android:text="Type is Beautiful,Type is Beautiful"
-                app:fontSize="font_16" />
+                android:text="Type is Beautiful,Type is Beautiful,Type is Beautiful,Type is Beautiful"
+                app:fontSize="font_16"
+                app:fontType="bold"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:fontFamily="@font/roboto_bold"
-                android:text="sweet font_14_regular"
+                android:text="sweet font_14_bold"
                 android:textSize="16dp" />
 
 
@@ -145,16 +145,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
-                android:fontFamily="@font/roboto_bold"
-                android:text="Type is Beautiful,Type is Beautiful"
-                app:fontSize="font_14" />
+                android:text="Type is Beautiful,Type is Beautiful,Type is Beautiful,Type is Beautiful"
+                app:fontSize="font_14"
+                app:fontType="bold"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:fontFamily="@font/roboto_bold"
-                android:text="sweet font_12_regular"
+                android:text="sweet font_12_bold"
                 android:textSize="16dp" />
 
 
@@ -162,16 +162,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
-                android:fontFamily="@font/roboto_bold"
-                android:text="Type is Beautiful,Type is Beautiful"
-                app:fontSize="font_12" />
+                android:text="Type is Beautiful,Type is Beautiful,Type is Beautiful,Type is Beautiful,Type is Beautiful,Type is Beautiful"
+                app:fontSize="font_12"
+                app:fontType="bold"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:fontFamily="@font/roboto_bold"
-                android:text="sweet font_11_regular"
+                android:text="sweet font_11_bold"
                 android:textSize="16dp" />
 
 
@@ -179,16 +179,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
-                android:fontFamily="@font/roboto_bold"
-                android:text="Type is Beautiful,Type is Beautiful"
-                app:fontSize="font_11" />
+                android:text="Type is Beautiful,Type is Beautiful,Type is Beautiful,Type is Beautiful,Type is Beautiful,Type is Beautiful,Type is Beautiful"
+                app:fontSize="font_11"
+                app:fontType="bold"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:fontFamily="@font/roboto_bold"
-                android:text="sweet font_10_regular"
+                android:text="sweet font_10_bold"
                 android:textSize="16dp" />
 
 
@@ -196,9 +196,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="24dp"
-                android:fontFamily="@font/roboto_bold"
-                android:text="Type is Beautiful,Type is Beautiful"
-                app:fontSize="font_10" />
+                android:text="Type is Beautiful,Type is Beautiful,Type is Beautiful,Type is Beautiful,Type is Beautiful,Type is Beautiful,Type is Beautiful"
+                app:fontSize="font_10"
+                app:fontType="bold"/>
 
         </LinearLayout>
 

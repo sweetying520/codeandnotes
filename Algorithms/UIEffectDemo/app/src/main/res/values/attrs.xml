@@ -13,6 +13,11 @@
             <enum name="font_11" value="11"/>
             <enum name="font_10" value="10"/>
         </attr>
+        <attr name="fontType">
+            <enum name="regular" value="1"/>
+            <enum name="medium" value="2"/>
+            <enum name="bold" value="3"/>
+        </attr>
     </declare-styleable>
 
 
@@ -28,6 +33,11 @@
             <enum name="font_12" value="12"/>
             <enum name="font_11" value="11"/>
             <enum name="font_10" value="10"/>
+        </attr>
+        <attr name="fontForm">
+            <enum name="regular" value="1"/>
+            <enum name="medium" value="2"/>
+            <enum name="bold" value="3"/>
         </attr>
         <attr name="dotColor" format="color"/>
         <attr name="fontColor" format="color"/>

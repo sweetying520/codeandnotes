@@ -11,12 +11,15 @@ import com.dream.uieffectdemo.text.FontSize.Companion.FONT_SIZE_20
 import com.dream.uieffectdemo.text.FontSize.Companion.FONT_SIZE_24
 import com.dream.uieffectdemo.text.FontSize.Companion.FONT_SIZE_28
 import com.dream.uieffectdemo.text.FontSize.Companion.FONT_SIZE_32
+import com.dream.uieffectdemo.text.FontType.Companion.FONT_BOLD
+import com.dream.uieffectdemo.text.FontType.Companion.FONT_MEDIUM
+import com.dream.uieffectdemo.text.FontType.Companion.FONT_REGULAR
 
 /**
- * function: 规定的字体 size
+ * function: 字体相关注解
  *
  * @author zy
- * @since 2022/12/15
+ * @since 2023/1/13
  */
 @IntDef(value = [FONT_SIZE_32,FONT_SIZE_28, FONT_SIZE_24, FONT_SIZE_20, FONT_SIZE_18, FONT_SIZE_16, FONT_SIZE_14, FONT_SIZE_12, FONT_SIZE_11, FONT_SIZE_10])
 annotation class FontSize {
@@ -34,5 +37,18 @@ annotation class FontSize {
         const val FONT_SIZE_12 = 12
         const val FONT_SIZE_11 = 11
         const val FONT_SIZE_10 = 10
+    }
+}
+
+@IntDef(value = [FONT_REGULAR,FONT_MEDIUM,FONT_BOLD])
+annotation class FontType {
+    companion object {
+        /**
+         * 字体类型
+         */
+        const val FONT_REGULAR = 1
+        const val FONT_MEDIUM = 2
+        const val FONT_BOLD = 3
+
     }
 }

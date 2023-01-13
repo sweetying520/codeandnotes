@@ -31,9 +31,14 @@ class FormatTextView: LinearLayout {
     private lateinit var inflater: LayoutInflater
 
     /**
-     * 自定义属性：自定大小
+     * 自定义属性：字体大小
      */
     private var fontUnit: Int = 0
+
+    /**
+     * 自定义属性：字体类型
+     */
+    private var fontForm: Int = 0
 
     /**
      * 自定义属性：无序列表圆点颜色
@@ -63,6 +68,7 @@ class FormatTextView: LinearLayout {
         //获取自定义属性
         val typedArray = context.obtainStyledAttributes(attrs, R.styleable.FormatTextView)
         fontUnit = typedArray.getInt(R.styleable.FormatTextView_fontUnit, 0)
+        fontForm = typedArray.getInt(R.styleable.FormatTextView_fontForm, 1)
         dotColor = typedArray.getColor(R.styleable.FormatTextView_dotColor,Color.parseColor("#282B2E"))
         fontColor = typedArray.getColor(R.styleable.FormatTextView_fontColor,Color.parseColor("#282B2E"))
         typedArray.recycle()
@@ -84,9 +90,13 @@ class FormatTextView: LinearLayout {
             tvContent.text = str
 
             tvSerial.applyFontSize(fontUnit)
+            tvSerial.applyFontType(fontForm)
             tvSerial.setTextColor(fontColor)
+
             tvContent.applyFontSize(fontUnit)
+            tvContent.applyFontType(fontForm)
             tvContent.setTextColor(fontColor)
+
 
             when(listType){
                 TYPE_PART ->{
