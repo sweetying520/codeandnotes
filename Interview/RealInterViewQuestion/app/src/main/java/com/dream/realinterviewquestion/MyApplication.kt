@@ -3,6 +3,7 @@ package com.dream.realinterviewquestion
 import android.app.Application
 import android.content.Context
 import android.util.Log
+import com.tencent.mmkv.MMKV
 
 /**
  * function: waiting for add
@@ -20,5 +21,8 @@ class MyApplication: Application() {
     override fun onCreate() {
         super.onCreate()
         Log.d("erdai", "onCreate: MyApplication")
+
+        val rootDir = MMKV.initialize(this)
+        Log.d("erdai", "onCreate: $rootDir")
     }
 }

@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import androidx.core.os.trace
+import com.dream.realinterviewquestion.sp_and_mmkv.SpAndMMKVActivity
 import com.example.providerfreeinit.TestManager
 import com.example.startupinit.DrawableManager
 import okhttp3.OkHttpClient
@@ -44,6 +45,10 @@ class MainActivity : AppCompatActivity() {
         Thread.sleep(500)
         startActivity(Intent(this,SecondActivity::class.java))
         Trace.endSection()
+    }
+
+    fun spAndMmkvClick(view: View) {
+        startActivity(Intent(this,SpAndMMKVActivity::class.java))
     }
 
 

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".sp_and_mmkv.SpAndMMKVActivity">
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:text="spTest"
+        android:textAllCaps="false"
+        android:onClick="spClick"
+        tools:ignore="HardcodedText,UsingOnClickInXml" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:text="mmkvTest"
+        android:textAllCaps="false"
+        android:onClick="mmkvClick"
+        tools:ignore="HardcodedText,UsingOnClickInXml" />
+
+</LinearLayout>
