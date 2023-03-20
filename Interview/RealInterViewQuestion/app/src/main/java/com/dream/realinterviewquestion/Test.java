@@ -11,12 +11,13 @@ import java.util.PriorityQueue;
 public class Test {
 
     public static void main(String[] args) {
-        MedianFinder medianFinder = new MedianFinder();
-        medianFinder.addNum(2);
-        medianFinder.addNum(3);
-        medianFinder.addNum(4);
-        medianFinder.addNum(5);
-        medianFinder.findMedian();
+
+//        MedianFinder medianFinder = new MedianFinder();
+//        medianFinder.addNum(2);
+//        medianFinder.addNum(3);
+//        medianFinder.addNum(4);
+//        medianFinder.addNum(5);
+//        medianFinder.findMedian();
 //        PriorityQueue<Integer> queueMax = new PriorityQueue<>((a,b) -> b - a);
 //        queueMax.offer(5);
 //        queueMax.offer(2);

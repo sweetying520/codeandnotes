@@ -9,6 +9,8 @@ import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import androidx.core.os.trace
+import com.dream.realinterviewquestion.mvi.MVIActivity
+import com.dream.realinterviewquestion.mvi2.NewsActivity
 import com.dream.realinterviewquestion.sp_and_mmkv.SpAndMMKVActivity
 import com.example.providerfreeinit.TestManager
 import com.example.startupinit.DrawableManager
@@ -49,6 +51,11 @@ class MainActivity : AppCompatActivity() {
 
     fun spAndMmkvClick(view: View) {
         startActivity(Intent(this,SpAndMMKVActivity::class.java))
+    }
+
+    fun mviClick(view: View) {
+//        startActivity(Intent(this,MVIActivity::class.java))
+        startActivity(Intent(this,NewsActivity::class.java))
     }
 
 
