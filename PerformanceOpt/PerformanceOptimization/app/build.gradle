@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    //id 'com.dream.plugin.apm'
 }
 
 android {
@@ -32,6 +33,25 @@ android {
     }
 }
 
+//apmConfig {
+//
+//    //帧率
+//    baseFrameRatePathList = [
+//            "com/dream/performanceoptimization/MainActivity",
+//            "com/dream/performanceoptimization/fragment/MainFragment"
+//    ]
+//
+//    //页面
+//    basePagePathList = [
+//            "com/dream/performanceoptimization/MainActivity",
+//            "com/dream/performanceoptimization/fragment/MainFragment"
+//    ]
+//
+//    //启动
+//    startUpAppPath "com/dream/performanceoptimization/MyApplication"
+//    startUpSplashPath "com/dream/performanceoptimization/SplashActivity"
+//    startUpHomePath "com/dream/performanceoptimization/MainActivity"
+//}
 dependencies {
 
     implementation 'androidx.core:core-ktx:1.9.0'

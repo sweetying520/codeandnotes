@@ -17,11 +17,11 @@ import com.google.android.material.tabs.TabLayout
 @Suppress("UNUSED_PARAMETER")
 class MainActivity : AppCompatActivity() {
 
-    private var onCreateStartTime: Long = 0
-    private var onCreateEndTime: Long = 0
-
-    private var onInflateStartTime: Long = 0
-    private var onInflateEndTime: Long = 0
+//    private var onCreateStartTime: Long = 0
+//    private var onCreateEndTime: Long = 0
+//
+//    private var onInflateStartTime: Long = 0
+//    private var onInflateEndTime: Long = 0
 
     private val tabLayout by lazy {
         findViewById<TabLayout>(R.id.tabLayout)
@@ -33,20 +33,24 @@ class MainActivity : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        onCreateStartTime = SystemClock.elapsedRealtime()
+        //onCreateStartTime = SystemClock.elapsedRealtime()
 
         super.onCreate(savedInstanceState)
 
-        onInflateStartTime = SystemClock.elapsedRealtime()
+//        onInflateStartTime = SystemClock.elapsedRealtime()
         setContentView(R.layout.activity_main)
-        onInflateEndTime = SystemClock.elapsedRealtime()
-        Log.d("erdai", "onCreate inflate: ${onInflateEndTime - onInflateStartTime}")
+//        onInflateEndTime = SystemClock.elapsedRealtime()
+//        Log.d("erdai", "onCreate inflate: ${onInflateEndTime - onInflateStartTime}")
 
-        onCreateEndTime = SystemClock.elapsedRealtime()
-        val cost = onCreateEndTime - onCreateStartTime
-        Log.d("erdai", "onCreate: $cost")
+//        onCreateEndTime = SystemClock.elapsedRealtime()
+//        val cost = onCreateEndTime - onCreateStartTime
+//        Log.d("erdai", "onCreate: $cost")
 
         initViewPager()
+    }
+
+    override fun setContentView(layoutResID: Int) {
+        super.setContentView(layoutResID)
     }
 
     private fun initViewPager() {
@@ -63,21 +67,25 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        Log.d("erdai", "Activity onStart: ")
+        //Log.d("erdai", "Activity onStart: ")
     }
 
     override fun onResume() {
         super.onResume()
 
-        val cost = SystemClock.elapsedRealtime() - onCreateStartTime
-        Log.d("erdai", "Activity onResume: $cost")
+//        val cost = SystemClock.elapsedRealtime() - onCreateStartTime
+//        Log.d("erdai", "Activity onResume: $cost")
+    }
+
+    override fun onPause() {
+        super.onPause()
     }
 
     override fun onWindowFocusChanged(hasFocus: Boolean) {
         super.onWindowFocusChanged(hasFocus)
 
-        val cost = SystemClock.elapsedRealtime() - onCreateStartTime
-        Log.d("erdai", "onWindowFocusChanged: $cost")
+//        val cost = SystemClock.elapsedRealtime() - onCreateStartTime
+//        Log.d("erdai", "onWindowFocusChanged: $cost")
     }
     
     
@@ -93,10 +101,10 @@ class MainActivity : AppCompatActivity() {
 //        }
 
 
-//        val nextInt = java.util.Random().nextInt(10) + 1
-//        Log.d("erdai", "anrClick: $nextInt")
+        val nextInt = java.util.Random().nextFloat()
+        Log.d("erdai", "anrClick: $nextInt")
 
-        startActivity(Intent(this,SecondActivity::class.java))
+//        startActivity(Intent(this,SecondActivity::class.java))
 
     }
 }

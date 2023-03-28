@@ -1,0 +1,54 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm'
+    id 'java-gradle-plugin'
+    id 'maven-publish'
+}
+
+repositories {
+    maven {
+        url('../repo')
+    }
+    mavenCentral()
+}
+
+
+dependencies {
+    implementation gradleApi()
+    implementation 'com.android.tools.build:gradle:4.2.2'
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.7.20'
+    implementation 'com.dream.asm:common:1.0.0'
+    //asm
+    api 'org.ow2.asm:asm:9.2'
+    api 'org.ow2.asm:asm-util:9.2'
+    api 'org.ow2.asm:asm-commons:9.2'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+//采用 Gradle 配置的方式进行插件注册
+gradlePlugin {
+    plugins {
+        modularPlugin {
+            id = 'com.dream.plugin.apm'
+            implementationClass = 'com.dream.plugin.apm.ApmPlugin'
+        }
+    }
+}
+
+//配置发布本地 maven
+publishing {
+    repositories {
+        maven { url uri("../repo") }
+    }
+    publications {
+        debug(MavenPublication) {
+            from components.java
+            groupId 'com.dream.plugin'
+            artifactId 'apm'
+            version "1.0.12"
+        }
+    }
+}
