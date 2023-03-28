@@ -1,9 +1,11 @@
 package com.dream.asm.common;
 
+
 /**
- * @author zhongch
- * @version 1.0
- * @since 2020/8/4
+ * function: RunVariant
+ *
+ * @author zy
+ * @since 2023/3/28
  */
 public enum RunVariant {
     DEBUG, RELEASE, ALWAYS, NEVER

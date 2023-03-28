@@ -17,11 +17,10 @@ import java.net.URLClassLoader;
 import java.util.Collection;
 
 /**
- * 类加载辅助
+ * function: 类加载辅助
  *
- * @author zhongch
- * @version 1.0
- * @since 2020/8/4
+ * @author zy
+ * @since 2023/3/28
  */
 public class ClassLoaderHelper {
 

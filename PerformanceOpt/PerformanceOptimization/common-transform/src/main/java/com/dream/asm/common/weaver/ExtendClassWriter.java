@@ -10,11 +10,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * 处理ClassWriter寻找两个类的共同父类存在的问题
+ * function: 处理ClassWriter寻找两个类的共同父类存在的问题
  *
- * @author zhongch
- * @version 1.0
- * @since 2020/8/4
+ * @author zy
+ * @since 2023/3/28
  */
 public class ExtendClassWriter extends ClassWriter {
 

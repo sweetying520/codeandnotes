@@ -30,12 +30,12 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+
 /**
- * 封装通用的声明Transform处理的类型，所处理的类型的范围
+ * function: 封装通用的声明Transform处理的类型，所处理的类型的范围
  *
- * @author zhongch
- * @version 1.0
- * @since 2020/8/4
+ * @author zy
+ * @since 2023/3/28
  */
 public class CommonTransform extends Transform {
 

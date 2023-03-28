@@ -4,9 +4,10 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * @author zhongch
- * @version 1.0
- * @since 2020/8/4
+ * function: IWeaver
+ *
+ * @author zy
+ * @since 2023/3/28
  */
 public interface IWeaver {
 

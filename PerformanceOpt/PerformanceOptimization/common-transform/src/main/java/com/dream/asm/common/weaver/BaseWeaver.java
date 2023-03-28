@@ -20,11 +20,10 @@ import java.util.zip.ZipFile;
 import java.util.zip.ZipOutputStream;
 
 /**
- * 过滤出对应的输入交给ClassReader
+ * function: 过滤出对应的输入交给ClassReader
  *
- * @author zhongch
- * @version 1.0
- * @since 2020/8/4
+ * @author zy
+ * @since 2023/3/28
  */
 public abstract class BaseWeaver implements IWeaver {
 
