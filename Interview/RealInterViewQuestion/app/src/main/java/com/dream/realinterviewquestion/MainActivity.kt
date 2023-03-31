@@ -6,7 +6,10 @@ import android.os.Trace
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.dream.base_core.HelloService
+import com.dream.base_core.HelloServiceManager
 import com.dream.realinterviewquestion.databinding.ActivityMainBinding
 import com.dream.realinterviewquestion.handle_msg_hook.HandleHookMsgActivity
 import com.dream.realinterviewquestion.mvi2.NewsActivity
@@ -14,6 +17,7 @@ import com.dream.realinterviewquestion.sp_and_mmkv.SpAndMMKVActivity
 import com.dream.realinterviewquestion.utils.ActivityUtils
 import com.example.providerfreeinit.TestManager
 import com.example.startupinit.DrawableManager
+import java.util.ServiceLoader
 
 class MainActivity : AppCompatActivity() {
 
@@ -48,29 +52,38 @@ class MainActivity : AppCompatActivity() {
 
         Trace.beginSection("erdai")
         Thread.sleep(500)
-        startActivity(Intent(this,SecondActivity::class.java))
+        startActivity(Intent(this, SecondActivity::class.java))
         Trace.endSection()
     }
 
     fun spAndMmkvClick(view: View) {
-        startActivity(Intent(this,SpAndMMKVActivity::class.java))
+        startActivity(Intent(this, SpAndMMKVActivity::class.java))
     }
 
     fun mviClick(view: View) {
 //        startActivity(Intent(this,MVIActivity::class.java))
-        startActivity(Intent(this,NewsActivity::class.java))
+        startActivity(Intent(this, NewsActivity::class.java))
+
     }
 
     private fun initListener() {
         mBinding.btnHMsgHook.setOnClickListener {
-            ActivityUtils.startActivity<HandleHookMsgActivity>(this){
-                putExtra(HandleHookMsgActivity.PARAS_1,"erdai")
-                putExtra(HandleHookMsgActivity.PARAS_2,"777")
+            ActivityUtils.startActivity<HandleHookMsgActivity>(this) {
+                putExtra(HandleHookMsgActivity.PARAS_1, "erdai")
+                putExtra(HandleHookMsgActivity.PARAS_2, "777")
+            }
+        }
+
+        mBinding.btnSPI.setOnClickListener {
+//            val helloService = ServiceLoader.load(HelloService::class.java).iterator().next()
+//            val greeting = helloService.sayHello("World")
+//            Toast.makeText(this, greeting, Toast.LENGTH_SHORT).show()
+
+            while (HelloServiceManager.hasNext()) {
+                Log.d("erdai", "initListener: ${HelloServiceManager.getHelloService().sayHello("World")}")
             }
         }
     }
-
-
 
 
 }

@@ -2,3 +2,5 @@ rootProject.name = "RealInterViewQuestion"
 include ':app'
 include ':ProviderFreeInit'
 include ':StartUpInit'
+include ':Base-Core'
+include ':Module-Chat'

@@ -50,6 +50,15 @@
             android:textAllCaps="false"
             tools:ignore="HardcodedText,UsingOnClickInXml" />
 
+        <Button
+            android:id="@+id/btnSPI"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:text="SPI"
+            android:textAllCaps="false"
+            tools:ignore="HardcodedText,UsingOnClickInXml" />
+
     </LinearLayout>
 
 </ScrollView>
