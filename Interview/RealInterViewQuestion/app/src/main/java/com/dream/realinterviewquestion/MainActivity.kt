@@ -1,23 +1,23 @@
 package com.dream.realinterviewquestion
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Debug
 import android.os.Trace
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
-import androidx.core.os.trace
-import com.dream.realinterviewquestion.mvi.MVIActivity
+import androidx.appcompat.app.AppCompatActivity
+import com.dream.realinterviewquestion.databinding.ActivityMainBinding
+import com.dream.realinterviewquestion.handle_msg_hook.HandleHookMsgActivity
 import com.dream.realinterviewquestion.mvi2.NewsActivity
 import com.dream.realinterviewquestion.sp_and_mmkv.SpAndMMKVActivity
+import com.dream.realinterviewquestion.utils.ActivityUtils
 import com.example.providerfreeinit.TestManager
 import com.example.startupinit.DrawableManager
-import okhttp3.OkHttpClient
-import okhttp3.Request
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var mBinding: ActivityMainBinding
 
     private val mIv by lazy {
         findViewById<ImageView>(R.id.iv)
@@ -25,10 +25,13 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        mBinding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(mBinding.root)
         Log.d("erdai", "onCreate: MainActivity")
         Log.d("erdai", "onCreate: ${TestManager.getStr(R.string.app_name)}")
         mIv.setImageDrawable(DrawableManager.getDrawable(R.mipmap.ic_launcher))
+
+        initListener()
     }
 
     override fun onPause() {
@@ -57,6 +60,17 @@ class MainActivity : AppCompatActivity() {
 //        startActivity(Intent(this,MVIActivity::class.java))
         startActivity(Intent(this,NewsActivity::class.java))
     }
+
+    private fun initListener() {
+        mBinding.btnHMsgHook.setOnClickListener {
+            ActivityUtils.startActivity<HandleHookMsgActivity>(this){
+                putExtra(HandleHookMsgActivity.PARAS_1,"erdai")
+                putExtra(HandleHookMsgActivity.PARAS_2,"777")
+            }
+        }
+    }
+
+
 
 
 }

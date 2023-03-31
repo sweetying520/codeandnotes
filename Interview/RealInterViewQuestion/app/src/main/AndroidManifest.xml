@@ -16,6 +16,9 @@
         android:theme="@style/Theme.RealInterViewQuestion"
         tools:targetApi="31">
         <activity
+            android:name=".HandleHookMsgActivity"
+            android:exported="false" />
+        <activity
             android:name=".mvi2.NewsActivity"
             android:exported="false" />
         <activity
@@ -40,6 +43,7 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+        <activity android:name="com.dream.realinterviewquestion.handle_msg_hook.HandleHookMsgActivity" />
     </application>
 
 </manifest>
