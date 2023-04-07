@@ -5,11 +5,13 @@ import android.os.Bundle
 import android.os.Trace
 import android.util.Log
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.dream.base_core.HelloService
 import com.dream.base_core.HelloServiceManager
+import com.dream.realinterviewquestion.customdialog.MyCustomDialog
 import com.dream.realinterviewquestion.databinding.ActivityMainBinding
 import com.dream.realinterviewquestion.handle_msg_hook.HandleHookMsgActivity
 import com.dream.realinterviewquestion.mvi2.NewsActivity
@@ -63,7 +65,6 @@ class MainActivity : AppCompatActivity() {
     fun mviClick(view: View) {
 //        startActivity(Intent(this,MVIActivity::class.java))
         startActivity(Intent(this, NewsActivity::class.java))
-
     }
 
     private fun initListener() {
@@ -82,6 +83,18 @@ class MainActivity : AppCompatActivity() {
             while (HelloServiceManager.hasNext()) {
                 Log.d("erdai", "initListener: ${HelloServiceManager.getHelloService().sayHello("World")}")
             }
+        }
+
+        mBinding.btnDialog.setOnClickListener {
+            //1、No Crash
+            val myCustomDialog = MyCustomDialog(this)
+            myCustomDialog.show()
+            myCustomDialog.setData("erdai777")
+
+            //2、Crash：show 之前不会执行 onCreate 方法，导致 dialog 的 view 没有初始化，出现空指针
+//            val myCustomDialog = MyCustomDialog(this)
+//            myCustomDialog.setData("erdai777")
+//            myCustomDialog.show()
         }
     }
 
