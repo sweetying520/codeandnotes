@@ -16,6 +16,12 @@
         android:theme="@style/Theme.RealInterViewQuestion"
         tools:targetApi="31">
         <activity
+            android:name=".PhotoWallActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ImageTopicActivity"
+            android:exported="false" />
+        <activity
             android:name=".HandleHookMsgActivity"
             android:exported="false" />
         <activity
@@ -44,6 +50,8 @@
                 android:value="" />
         </activity>
         <activity android:name="com.dream.realinterviewquestion.handle_msg_hook.HandleHookMsgActivity" />
+        <activity android:name="com.dream.realinterviewquestion.bitmap.ImageTopicActivity" />
+        <activity android:name="com.dream.realinterviewquestion.bitmap.photowall.PhotoWallActivity" />
     </application>
 
 </manifest>

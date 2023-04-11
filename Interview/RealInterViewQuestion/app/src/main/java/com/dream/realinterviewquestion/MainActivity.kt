@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.dream.base_core.HelloService
 import com.dream.base_core.HelloServiceManager
+import com.dream.realinterviewquestion.bitmap.ImageTopicActivity
 import com.dream.realinterviewquestion.customdialog.MyCustomDialog
 import com.dream.realinterviewquestion.databinding.ActivityMainBinding
 import com.dream.realinterviewquestion.handle_msg_hook.HandleHookMsgActivity
@@ -95,6 +96,10 @@ class MainActivity : AppCompatActivity() {
 //            val myCustomDialog = MyCustomDialog(this)
 //            myCustomDialog.setData("erdai777")
 //            myCustomDialog.show()
+        }
+
+        mBinding.btnImageTopic.setOnClickListener {
+            ActivityUtils.startActivity<ImageTopicActivity>(this)
         }
     }
 
