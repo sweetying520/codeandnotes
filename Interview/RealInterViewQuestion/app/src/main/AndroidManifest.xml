@@ -16,6 +16,9 @@
         android:theme="@style/Theme.RealInterViewQuestion"
         tools:targetApi="31">
         <activity
+            android:name=".ShowBigPicActivity"
+            android:exported="false" />
+        <activity
             android:name=".PhotoWallActivity"
             android:exported="false" />
         <activity
@@ -52,6 +55,7 @@
         <activity android:name="com.dream.realinterviewquestion.handle_msg_hook.HandleHookMsgActivity" />
         <activity android:name="com.dream.realinterviewquestion.bitmap.ImageTopicActivity" />
         <activity android:name="com.dream.realinterviewquestion.bitmap.photowall.PhotoWallActivity" />
+        <activity android:name="com.dream.realinterviewquestion.bitmap.showbigpic.ShowBigPicActivity" />
     </application>
 
 </manifest>

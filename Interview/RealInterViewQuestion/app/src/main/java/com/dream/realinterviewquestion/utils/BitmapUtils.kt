@@ -1,10 +1,13 @@
 package com.dream.realinterviewquestion.utils
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Build
+import com.dream.realinterviewquestion.MyApplication
+import java.io.File
 import kotlin.math.roundToInt
 
 
@@ -54,6 +57,16 @@ object BitmapUtils {
         } else {
             bitmap?.byteCount?:0
         }
+    }
+
+    //"https://lh6.googleusercontent.com/-55osAWw3x0Q/URquUtcFr5I/AAAAAAAAAbs/rWlj1RUKrYI/s160-c/A%252520Photographer.jpg"
+    fun getImagePath(imageUrl: String): String {
+        val index = imageUrl.lastIndexOf("/")
+        val imageName = imageUrl.substring(index + 1)
+        val parentPath = "${MyApplication.context.externalCacheDir?.path}/image/"
+        val parent = File(parentPath)
+        if(!parent.exists())parent.mkdirs()
+        return "$parentPath$imageName"
     }
 
 }

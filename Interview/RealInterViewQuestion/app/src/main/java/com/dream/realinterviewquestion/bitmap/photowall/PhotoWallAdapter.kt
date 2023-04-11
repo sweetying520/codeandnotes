@@ -19,7 +19,12 @@ import android.widget.GridView
 import android.widget.ImageView
 import com.dream.realinterviewquestion.R
 import com.dream.realinterviewquestion.bitmap.Images
+import com.dream.realinterviewquestion.bitmap.showbigpic.ShowBigPicActivity
 import com.dream.realinterviewquestion.utils.BitmapUtils
+import java.io.File
+import java.io.FileOutputStream
+import java.io.InputStream
+import java.io.OutputStream
 import java.net.HttpURLConnection
 import java.net.URL
 
@@ -60,6 +65,9 @@ class PhotoWallAdapter(context: Context,resId: Int,gridView: GridView): ArrayAda
         val view: View? = convertView ?: LayoutInflater.from(context).inflate(R.layout.photo_layout,null)
         val iv = view?.findViewById<ImageView>(R.id.photo)
         iv?.tag = url
+        iv?.setOnClickListener {
+            ShowBigPicActivity.start(context,url)
+        }
         setImageView(url,iv)
         return view!!
     }
@@ -147,30 +155,56 @@ class PhotoWallAdapter(context: Context,resId: Int,gridView: GridView): ArrayAda
         override fun doInBackground(vararg params: String?): Bitmap? {
             Log.d("erdai", "doInBackground: ")
             imageUrl = params[0].toString()
-            //开启在后台下载图片
-            val bitmap = downloadBitmapInBackground(imageUrl)
-            if(bitmap != null){
-                //加入内存缓存
-                addToMemoryCache(imageUrl,bitmap)
+            var bitmap = getBitmapFromMemoryCache(imageUrl)
+
+            if(bitmap == null){
+                bitmap = loadImage(imageUrl)
             }
             return bitmap
         }
 
-        private fun downloadBitmapInBackground(imageUrl: String): Bitmap? {
-            var bitmap: Bitmap? = null
+        private fun loadImage(imageUrl: String): Bitmap? {
+            val imageFile = File(BitmapUtils.getImagePath(imageUrl))
+            if(!imageFile.exists()){
+                downloadBitmapInBackground(imageUrl)
+            }
+
+            val bitmap = BitmapFactory.decodeFile(imageFile.path)
+            addToMemoryCache(imageUrl,bitmap)
+            return bitmap
+        }
+
+        private fun downloadBitmapInBackground(imageUrl: String) {
             var httpURLConnection: HttpURLConnection? = null
+            var input: InputStream? = null
+            var output: OutputStream? = null
+            var imageFile: File? = null
             try {
                 val url = URL(imageUrl)
                 httpURLConnection = url.openConnection() as? HttpURLConnection
                 httpURLConnection?.readTimeout = 5 * 1000
                 httpURLConnection?.connectTimeout = 5 * 1000
-                bitmap = BitmapFactory.decodeStream(httpURLConnection?.inputStream)
+                input = httpURLConnection?.inputStream
+                imageFile = File(BitmapUtils.getImagePath(imageUrl))
+                output = FileOutputStream(imageFile)
+                val bytes = ByteArray(1024)
+                var length: Int
+                length = input?.read(bytes)?:-1
+                while (length != -1){
+                    output.write(bytes,0,length)
+                    output.flush()
+                    length = input?.read(bytes)?:-1
+                }
             }catch (e: Exception){
                 e.printStackTrace()
             }finally {
                 httpURLConnection?.disconnect()
+                input?.close()
+                output?.close()
             }
-            return bitmap
+            if(imageFile != null){
+                addToMemoryCache(imageUrl,BitmapFactory.decodeFile(imageFile.path))
+            }
         }
 
 
