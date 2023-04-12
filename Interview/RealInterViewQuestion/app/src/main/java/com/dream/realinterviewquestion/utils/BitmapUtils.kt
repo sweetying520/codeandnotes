@@ -6,8 +6,14 @@ import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Build
+import android.os.Environment
+import android.util.Log
 import com.dream.realinterviewquestion.MyApplication
-import java.io.File
+import java.io.*
+import java.net.HttpURLConnection
+import java.net.URL
+import java.security.MessageDigest
+import java.security.NoSuchAlgorithmException
 import kotlin.math.roundToInt
 
 
@@ -47,6 +53,17 @@ object BitmapUtils {
         return BitmapFactory.decodeResource(resource,resId,bitmapOptions)
     }
 
+    fun decodeSampledBitmapFromFile(path: String,targetWidth: Int,targetHeight: Int): Bitmap?{
+        val bitmapOptions = BitmapFactory.Options()
+        bitmapOptions.inJustDecodeBounds = true
+        BitmapFactory.decodeFile(path,bitmapOptions)
+        bitmapOptions.inSampleSize = calcInSampleSize(bitmapOptions,targetWidth,targetHeight)
+        bitmapOptions.inJustDecodeBounds = false
+        return BitmapFactory.decodeFile(path,bitmapOptions)
+    }
+
+
+
     /**
      * 获取 Bitmap 占用的字节数
      */
@@ -67,6 +84,102 @@ object BitmapUtils {
         val parent = File(parentPath)
         if(!parent.exists())parent.mkdirs()
         return "$parentPath$imageName"
+    }
+
+    fun dp2px(dpValue: Float): Int{
+        val scale = Resources.getSystem().displayMetrics.density
+        return (dpValue * scale + 0.5f).toInt()
+    }
+
+    fun getCacheDir(context: Context,uniqueName: String): File{
+        val parentPath: String? = if(Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED
+            || !Environment.isExternalStorageRemovable()){
+            context.externalCacheDir?.path
+        }else{
+            context.cacheDir?.path
+        }
+        return File(parentPath + File.separator + uniqueName)
+    }
+
+    fun getAppVersion(context: Context) = try {
+        context.packageManager.getPackageInfo(context.packageName, 0).versionCode
+    } catch (e: Exception) {
+        e.printStackTrace()
+        1
+    }
+
+    fun downloadUrlToStream(url: String,output: OutputStream): Boolean{
+        var urlConnection: HttpURLConnection? = null
+        var bufferInputStream: BufferedInputStream? = null
+        var bufferOutputStream: BufferedOutputStream? = null
+        try {
+            val uRL = URL(url)
+            urlConnection = uRL.openConnection() as? HttpURLConnection
+            bufferInputStream = BufferedInputStream(urlConnection?.inputStream)
+            bufferOutputStream = BufferedOutputStream(output)
+            val bytes = ByteArray(8*1024)
+            var length: Int
+            length = bufferInputStream.read(bytes)
+            while(length != -1){
+                bufferOutputStream.write(bytes,0,length)
+                bufferOutputStream.flush()
+                length = bufferInputStream.read(bytes)
+            }
+            Log.d("erdai", "downloadUrlToStream: 下载成功...")
+            return true
+        }catch (e: Exception){
+            e.printStackTrace()
+        }finally {
+            urlConnection?.disconnect()
+            bufferInputStream?.close()
+            bufferOutputStream?.close()
+        }
+        return false
+    }
+
+    fun hashKeyForDisk(key: String) = try {
+        val messageDigest = MessageDigest.getInstance("MD5")
+        messageDigest.update(key.toByteArray())
+        bytesToHexString(messageDigest.digest())
+    } catch (e: Exception) {
+        java.lang.String.valueOf(key.hashCode())
+    }
+
+
+    fun bytesToHexString(byteArray: ByteArray): String{
+        val sb = StringBuilder()
+        for (i in byteArray.indices) {
+            val hex = Integer.toHexString(0xFF and byteArray[i].toInt())
+            if (hex.length == 1) {
+                sb.append('0')
+            }
+            sb.append(hex)
+        }
+        return sb.toString()
+    }
+
+    fun hashKeyFromUrl(url: String): String {
+        val cacheKey: String
+        cacheKey = try {
+            val digest = MessageDigest.getInstance("MD5")
+            digest.update(url.toByteArray())
+            bytesToHexString1(digest.digest())
+        } catch (e: NoSuchAlgorithmException) {
+            url.hashCode().toString()
+        }
+        return cacheKey
+    }
+
+    private fun bytesToHexString1(bytes: ByteArray): String {
+        val sb = StringBuilder()
+        for (i in bytes.indices) {
+            val hex = Integer.toHexString(0xFF and bytes[i].toInt())
+            if (hex.length == 1) {
+                sb.append('0')
+            }
+            sb.append(hex)
+        }
+        return sb.toString()
     }
 
 }

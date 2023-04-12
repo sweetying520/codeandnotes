@@ -7,7 +7,6 @@ import android.graphics.BitmapFactory
 import android.os.AsyncTask
 import android.util.Log
 import android.util.LruCache
-import android.util.TimeUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,25 +20,25 @@ import com.dream.realinterviewquestion.R
 import com.dream.realinterviewquestion.bitmap.Images
 import com.dream.realinterviewquestion.bitmap.showbigpic.ShowBigPicActivity
 import com.dream.realinterviewquestion.utils.BitmapUtils
-import java.io.File
-import java.io.FileOutputStream
-import java.io.InputStream
-import java.io.OutputStream
+import com.jakewharton.disklrucache.DiskLruCache
+import com.jakewharton.disklrucache.DiskLruCache.Snapshot
+import java.io.*
 import java.net.HttpURLConnection
 import java.net.URL
 
 /**
- * function: LruCache + 文件存储 + inSampleSize 压缩
+ * function: LruCache + DiskLruCache + inSampleSize 压缩
  *
  * @author zy
  * @since 2023/4/7
  */
-class PhotoWallAdapter(context: Context,resId: Int,gridView: GridView): ArrayAdapter<String>(context,resId,Images.imageThumbUrls),
+class PhotoWallAdapter2(context: Context,resId: Int,gridView: GridView): ArrayAdapter<String>(context,resId,Images.imageThumbUrls),
     OnScrollListener {
 
     private var mGridView: GridView
     private var taskCollection: MutableSet<BitmapWorkerTask>
     private var lruCache: LruCache<String?,Bitmap?>
+    private var diskLruCache: DiskLruCache
     private var mFirstVisibleIndex = 0
     private var mVisibleItemCount = 0
     private var isFirstEnter = true
@@ -56,6 +55,7 @@ class PhotoWallAdapter(context: Context,resId: Int,gridView: GridView): ArrayAda
                 return BitmapUtils.getBitmapSize(value)
             }
         }
+        diskLruCache = DiskLruCache.open(BitmapUtils.getCacheDir(context,"bitmap1"),BitmapUtils.getAppVersion(context),1,10*1024*1024)
         mGridView.setOnScrollListener(this)
     }
 
@@ -153,20 +153,49 @@ class PhotoWallAdapter(context: Context,resId: Int,gridView: GridView): ArrayAda
         }
 
         override fun doInBackground(vararg params: String?): Bitmap? {
-            Log.d("erdai", "doInBackground: ")
             imageUrl = params[0].toString()
-            var bitmap = getBitmapFromMemoryCache(imageUrl)
+            Log.d("erdai", "doInBackground: $imageUrl")
+            var inputStream: FileInputStream? = null
+            var fd: FileDescriptor? = null
+            var snapshot: Snapshot?
+            try {
+                val key = BitmapUtils.hashKeyForDisk(imageUrl)
+                snapshot = diskLruCache.get(key)
+                if(snapshot == null){
+                    val editor = diskLruCache.edit(key)
+                    if(editor != null){
+                        val newOutputStream = editor.newOutputStream(0)
+                        if(downloadBitmapInBackground(imageUrl,newOutputStream)){
+                            editor.commit()
+                        }else{
+                            editor.abort()
+                        }
+                    }
+                    snapshot = diskLruCache.get(key)
+                }
+                //diskLruCache.flush()
+                if(snapshot != null){
+                    inputStream = snapshot.getInputStream(0) as? FileInputStream
+                    fd = inputStream?.fd
+                }
 
-            if(bitmap == null){
-                bitmap = loadImage(imageUrl)
+                val bitmap = BitmapFactory.decodeFileDescriptor(fd)
+                if(bitmap != null){
+                    addToMemoryCache(imageUrl,bitmap)
+                }
+                return bitmap
+            }catch (e: Exception){
+                e.printStackTrace()
+            }finally {
+                inputStream?.close()
             }
-            return bitmap
+            return null
         }
 
         private fun loadImage(imageUrl: String): Bitmap? {
             val imageFile = File(BitmapUtils.getImagePath(imageUrl))
             if(!imageFile.exists()){
-                downloadBitmapInBackground(imageUrl)
+                //downloadBitmapInBackground(imageUrl)
             }
             val bitmap = BitmapFactory.decodeFile(imageFile.path)
             Log.d("erdai", "loadImage: 压缩前：${bitmap.allocationByteCount}")
@@ -180,27 +209,26 @@ class PhotoWallAdapter(context: Context,resId: Int,gridView: GridView): ArrayAda
             return null
         }
 
-        private fun downloadBitmapInBackground(imageUrl: String) {
+        private fun downloadBitmapInBackground(imageUrl: String,outputStream: OutputStream): Boolean {
             var httpURLConnection: HttpURLConnection? = null
             var input: InputStream? = null
             var output: OutputStream? = null
-            var imageFile: File? = null
             try {
                 val url = URL(imageUrl)
                 httpURLConnection = url.openConnection() as? HttpURLConnection
                 httpURLConnection?.readTimeout = 5 * 1000
                 httpURLConnection?.connectTimeout = 5 * 1000
-                input = httpURLConnection?.inputStream
-                imageFile = File(BitmapUtils.getImagePath(imageUrl))
-                output = FileOutputStream(imageFile)
-                val bytes = ByteArray(1024)
+                input = BufferedInputStream(httpURLConnection?.inputStream)
+                output = BufferedOutputStream(outputStream)
+                val bytes = ByteArray(8*1024)
                 var length: Int
-                length = input?.read(bytes)?:-1
+                length = input.read(bytes)
                 while (length != -1){
                     output.write(bytes,0,length)
                     output.flush()
-                    length = input?.read(bytes)?:-1
+                    length = input.read(bytes)
                 }
+                return true
             }catch (e: Exception){
                 e.printStackTrace()
             }finally {
@@ -208,12 +236,7 @@ class PhotoWallAdapter(context: Context,resId: Int,gridView: GridView): ArrayAda
                 input?.close()
                 output?.close()
             }
-            if(imageFile != null){
-                val compressBitmap = BitmapUtils.decodeSampledBitmapFromFile(imageFile.path,BitmapUtils.dp2px(90f),BitmapUtils.dp2px(90f))
-                if(compressBitmap != null){
-                    addToMemoryCache(imageUrl,compressBitmap)
-                }
-            }
+            return false
         }
 
 

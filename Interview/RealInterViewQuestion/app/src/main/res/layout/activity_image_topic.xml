@@ -39,6 +39,33 @@
             android:textAllCaps="false"
             tools:ignore="HardcodedText,UsingOnClickInXml" />
 
+        <Button
+            android:id="@+id/btnDiskLruCacheSave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:text="DiskLruCache Save"
+            android:textAllCaps="false"
+            tools:ignore="HardcodedText,UsingOnClickInXml" />
+
+        <Button
+            android:id="@+id/btnDiskLruCacheGet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:text="DiskLruCache Get"
+            android:textAllCaps="false"
+            tools:ignore="HardcodedText,UsingOnClickInXml" />
+
+        <Button
+            android:id="@+id/btnDiskLruCacheRemove"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:text="DiskLruCache Remove"
+            android:textAllCaps="false"
+            tools:ignore="HardcodedText,UsingOnClickInXml" />
+
     </LinearLayout>
 
 </ScrollView>

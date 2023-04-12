@@ -64,5 +64,8 @@ dependencies {
     implementation project(':Base-Core')
     implementation project(':Module-Chat')
 
+    implementation 'com.jakewharton:disklrucache:2.0.2'
+
+
 
 }

@@ -7,7 +7,7 @@ package com.dream.realinterviewquestion.bitmap
  * @since 2023/4/7
  */
 object Images {
-    val imageThumbUrls = arrayOf(
+    val imageThumbUrls1 = arrayOf(
         "https://lh6.googleusercontent.com/-55osAWw3x0Q/URquUtcFr5I/AAAAAAAAAbs/rWlj1RUKrYI/s160-c/A%252520Photographer.jpg",
         "https://lh4.googleusercontent.com/--dq8niRp7W4/URquVgmXvgI/AAAAAAAAAbs/-gnuLQfNnBA/s160-c/A%252520Song%252520of%252520Ice%252520and%252520Fire.jpg",
         "https://lh5.googleusercontent.com/-7qZeDtRKFKc/URquWZT1gOI/AAAAAAAAAbs/hqWgteyNXsg/s160-c/Another%252520Rockaway%252520Sunset.jpg",
@@ -108,4 +108,20 @@ object Images {
         "https://lh5.googleusercontent.com/-kI_QdYx7VlU/URqvLXCB6gI/AAAAAAAAAbs/N31vlZ6u89o/s160-c/Yet%252520Another%252520Rockaway%252520Sunset.jpg",
         "https://lh4.googleusercontent.com/-e9NHZ5k5MSs/URqvMIBZjtI/AAAAAAAAAbs/1fV810rDNfQ/s160-c/Yosemite%252520Tree.jpg"
     )
+
+    val imageThumbUrls = arrayOf(
+        "https://www.wanandroid.com/blogimgs/62c1bd68-b5f3-4a3c-a649-7ca8c7dfabe6.png",
+        "https://www.wanandroid.com/blogimgs/42da12d8-de56-4439-b40c-eab66c227a4b.png",
+        "https://www.wanandroid.com/blogimgs/50c115c2-cf6c-4802-aa7b-a4334de444cd.png",
+        "https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d6e402af2a774dbdbca9fc37e8027cfa~tplv-k3u1fbpfcp-watermark.image?",
+        "https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/0faab578ed4741edb81bf9b8d22b60c8~tplv-k3u1fbpfcp-watermark.image?",
+        "https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7e1baaa8a9b94961a5cae015b0890cf3~tplv-k3u1fbpfcp-watermark.image?",
+        "https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/0a6163b15995449799850cef6fd5508c~tplv-k3u1fbpfcp-watermark.image?",
+        "https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a784cd0ae6b1439a8c9e3d0ac0b92ea8~tplv-k3u1fbpfcp-watermark.image?",
+        "https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/313ea59d82f249428468c5c9186f69d0~tplv-k3u1fbpfcp-watermark.image?",
+        "https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/62ffd4977786447e8174026b2f58ccd3~tplv-k3u1fbpfcp-watermark.image?",
+        "https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ef7d5226198d42a09559419a34f9c406~tplv-k3u1fbpfcp-watermark.image?",
+        "https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4d80adcefbcc4db1aa4b1ba267540e26~tplv-k3u1fbpfcp-watermark.image?"
+    )
 }
+
