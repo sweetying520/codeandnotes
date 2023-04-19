@@ -1,0 +1,3 @@
+rootProject.name = "SmartPermission"
+include ':app'
+include ':smartpermission'
