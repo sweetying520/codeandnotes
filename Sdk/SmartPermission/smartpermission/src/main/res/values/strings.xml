@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="smartpermission_access_background_location">Background location</string>
+    <string name="smartpermission_system_alert_window">Display over other apps</string>
+    <string name="smartpermission_write_settings">Modify system settings</string>
+    <string name="smartpermission_manage_external_storage">All files access</string>
+    <string name="smartpermission_request_install_packages">Install unknown apps</string>
+    <string name="smartpermission_post_notification">Notifications</string>
+    <string name="smartpermission_body_sensor_background">Background body sensors</string>
+</resources>

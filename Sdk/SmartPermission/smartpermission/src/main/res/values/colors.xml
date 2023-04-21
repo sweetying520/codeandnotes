@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="smartpermission_default_dialog_bg">#fff</color>
+    <color name="smartpermission_split_line">#e0e0e0</color>
+    <color name="smartpermission_tint_color">#1972e8</color>
+    <color name="smartpermission_text_color">#212121</color>
+</resources>

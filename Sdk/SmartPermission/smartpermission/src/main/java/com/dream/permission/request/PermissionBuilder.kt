@@ -1,7 +1,10 @@
 package com.dream.permission.request
 
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.pm.ActivityInfo
+import android.content.res.Configuration
+import android.os.Build
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
@@ -9,6 +12,8 @@ import com.dream.permission.callback.ExplainReasonCallback
 import com.dream.permission.callback.ExplainReasonCallbackWithBeforeParam
 import com.dream.permission.callback.ForwardToSettingsCallback
 import com.dream.permission.callback.RequestCallback
+import com.dream.permission.dialog.DefaultDialog
+import com.dream.permission.dialog.RationaleDialog
 
 /**
  * function: waiting for add
@@ -19,8 +24,8 @@ import com.dream.permission.callback.RequestCallback
 class PermissionBuilder(
     fragmentActivity: FragmentActivity?,
     fragment: Fragment?,
-    normalPermissions: MutableSet<String>?,
-    specialPermissions: MutableSet<String>?,
+    normalPermissions: MutableSet<String>,
+    specialPermissions: MutableSet<String>,
 ) {
 
     lateinit var activity: FragmentActivity
@@ -55,16 +60,19 @@ class PermissionBuilder(
     var currentDialog: Dialog? = null
 
     @JvmField
-    var normalPermissions: MutableSet<String>? = null
+    var normalPermissions: MutableSet<String>
 
     @JvmField
-    var specialPermissions: MutableSet<String>? = null
+    var specialPermissions: MutableSet<String>
 
     @JvmField
     var explainReasonBeforeRequest = false
 
     @JvmField
     var showDialogCalled = false
+
+    @JvmField
+    var permissionsWontRequest: MutableSet<String> = LinkedHashSet()
 
     @JvmField
     var grantedPermissions: MutableSet<String> = LinkedHashSet()
@@ -77,6 +85,9 @@ class PermissionBuilder(
 
     @JvmField
     var tempPermanentDeniedPermissions: MutableSet<String> = LinkedHashSet()
+
+    @JvmField
+    var forwardPermissions: MutableSet<String> = LinkedHashSet()
 
     @JvmField
     var requestCallback: RequestCallback? = null
@@ -103,7 +114,7 @@ class PermissionBuilder(
         return this
     }
 
-    fun forwardToSettings(callback: ForwardToSettingsCallback?): PermissionBuilder {
+    fun onForwardToSettings(callback: ForwardToSettingsCallback?): PermissionBuilder {
         forwardToSettingsCallback = callback
         return this
     }
@@ -125,8 +136,107 @@ class PermissionBuilder(
         startRequest()
     }
 
-    private fun startRequest() {
+    fun showHandlePermissionDialog(
+        chainTask: ChainTask,
+        showReasonOrGoSettings: Boolean,
+        permissions: List<String>,
+        message: String,
+        positiveText: String,
+        negativeText: String?
+    ){
+        val defaultDialog = DefaultDialog(
+            activity,
+            permissions,
+            message,
+            positiveText,
+            negativeText,
+            lightColor,
+            darkColor
+        )
+        showHandlePermissionDialog(chainTask,showReasonOrGoSettings,defaultDialog)
+    }
 
+
+    fun showHandlePermissionDialog(
+        chainTask: ChainTask,
+        showReasonOrGoSettings: Boolean,
+        dialog: RationaleDialog
+    ){
+        showDialogCalled = true
+        val permissions = dialog.permissionToRequest
+        if(permissions.isEmpty()){
+            chainTask.finish()
+            return
+        }
+        currentDialog = dialog
+        dialog.show()
+        if(dialog is DefaultDialog && dialog.isPermissionLayoutEmpty()){
+            dialog.dismiss()
+            chainTask.finish()
+        }
+        val positiveButton = dialog.positiveButton
+        val negativeButton = dialog.negativeButton
+        dialog.setCancelable(false)
+        dialog.setCanceledOnTouchOutside(false)
+        positiveButton.isClickable = true
+        positiveButton.setOnClickListener {
+            dialog.dismiss()
+            if(showReasonOrGoSettings){
+                chainTask.requestAgain(permissions)
+            }else{
+                forwardToSettings(permissions)
+            }
+        }
+
+        if(negativeButton != null){
+            negativeButton.isClickable = true
+            negativeButton.setOnClickListener {
+                dialog.dismiss()
+                chainTask.finish()
+            }
+        }
+
+        currentDialog?.setOnDismissListener {
+            currentDialog = null
+        }
+
+    }
+
+
+
+    private fun startRequest() {
+        lockOrientation()
+
+        val requestChain = RequestChain()
+        requestChain.addTaskToChain(RequestNormalPermissions(this))
+        requestChain.addTaskToChain(RequestBackgroundLocationPermission(this))
+        requestChain.runTask()
+    }
+
+    private fun removeInvisibleFragment(){
+        val existedFragment = fragmentManager.findFragmentByTag(FRAGMENT_TAG)
+        if(existedFragment != null){
+            fragmentManager.beginTransaction().remove(existedFragment).commitNowAllowingStateLoss()
+        }
+    }
+
+    private fun restoreOrientation(){
+        if(Build.VERSION.SDK_INT != Build.VERSION_CODES.O){
+            activity.requestedOrientation = originRequestOrientation
+        }
+    }
+
+    @SuppressLint("SourceLockedOrientationActivity")
+    private fun lockOrientation(){
+        if(Build.VERSION.SDK_INT != Build.VERSION_CODES.O){
+            originRequestOrientation = activity.requestedOrientation
+            val orientation = activity.resources.configuration.orientation
+            if(orientation == Configuration.ORIENTATION_LANDSCAPE){
+                activity.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE
+            }else if(orientation == Configuration.ORIENTATION_PORTRAIT){
+                activity.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT
+            }
+        }
     }
 
     fun requestNow(permissions: Set<String>,chainTask: ChainTask){
@@ -138,17 +248,33 @@ class PermissionBuilder(
         invisibleFragment.requestAccessBackgroundLocationPermissionNow(this,chainTask)
     }
 
+    fun shouldRequestBackgroundLocationPermission(): Boolean {
+        return specialPermissions.contains(RequestBackgroundLocationPermission.ACCESS_BACKGROUND_LOCATION)
+    }
+
+    private fun forwardToSettings(permissions: List<String>){
+        forwardPermissions.clear()
+        forwardPermissions.addAll(permissions)
+        invisibleFragment.forwardToSettings()
+    }
+
+    internal fun endRequest(){
+        removeInvisibleFragment()
+        restoreOrientation()
+    }
+
 
 
     init {
         if(fragmentActivity != null){
-            this.activity = fragmentActivity
+            activity = fragmentActivity
         }
 
-        if(fragment != null){
-            this.fragment = fragment
+        if(fragmentActivity == null && fragment != null){
+            activity = fragment.requireActivity()
         }
 
+        this.fragment = fragment
         this.normalPermissions = normalPermissions
         this.specialPermissions = specialPermissions
     }
