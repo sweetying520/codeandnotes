@@ -14,7 +14,11 @@ import com.dream.permission.SmartPermission
 internal class RequestBackgroundLocationPermission internal constructor(permissionBuilder: PermissionBuilder):
     BaseTask(permissionBuilder) {
 
+
     companion object{
+        /**
+         * Android 10 之后才有，因此在申请的时候，注意进行权限的判断
+         */
         const val ACCESS_BACKGROUND_LOCATION = "android.permission.ACCESS_BACKGROUND_LOCATION"
     }
 

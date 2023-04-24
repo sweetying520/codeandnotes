@@ -2,6 +2,7 @@ package com.dream.permission.request
 
 import androidx.fragment.app.DialogFragment
 import com.dream.permission.dialog.RationaleDialog
+import com.dream.permission.dialog.RationaleDialogFragment
 
 /**
  * function: waiting for add
@@ -24,8 +25,8 @@ class ForwardScope internal constructor(
     }
 
 
-    fun showForwardToSettingsDialog(dialogFragment: DialogFragment){
-
+    fun showForwardToSettingsDialog(dialogFragment: RationaleDialogFragment){
+        pb.showHandlePermissionDialog(chainTask,false,dialogFragment)
     }
 
 }

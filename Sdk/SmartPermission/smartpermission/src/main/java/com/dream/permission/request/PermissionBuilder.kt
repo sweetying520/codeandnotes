@@ -1,10 +1,12 @@
 package com.dream.permission.request
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.pm.ActivityInfo
 import android.content.res.Configuration
 import android.os.Build
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
@@ -14,6 +16,8 @@ import com.dream.permission.callback.ForwardToSettingsCallback
 import com.dream.permission.callback.RequestCallback
 import com.dream.permission.dialog.DefaultDialog
 import com.dream.permission.dialog.RationaleDialog
+import com.dream.permission.dialog.RationaleDialogFragment
+import com.dream.permission.dialog.permissionMapOnT
 
 /**
  * function: waiting for add
@@ -202,6 +206,40 @@ class PermissionBuilder(
 
     }
 
+    fun showHandlePermissionDialog(
+        chainTask: ChainTask,
+        showReasonOrGoSettings: Boolean,
+        dialogFragment: RationaleDialogFragment
+    ){
+        showDialogCalled = true
+        val permissions = dialogFragment.permissionsToRequest
+        if(permissions.isEmpty()){
+            chainTask.finish()
+            return
+        }
+        dialogFragment.show(fragmentManager,"SmartPermissionRationaleDialogFragment")
+        val positiveButton = dialogFragment.positiveButton
+        val negativeButton = dialogFragment.negativeButton
+        dialogFragment.isCancelable = false
+        positiveButton.isClickable = true
+        positiveButton.setOnClickListener {
+            dialogFragment.dismiss()
+            if(showReasonOrGoSettings){
+                chainTask.requestAgain(permissions)
+            }else{
+                forwardToSettings(permissions)
+            }
+        }
+
+        if(negativeButton != null){
+            negativeButton.isClickable = true
+            negativeButton.setOnClickListener {
+                dialogFragment.dismiss()
+                chainTask.finish()
+            }
+        }
+    }
+
 
 
     private fun startRequest() {
@@ -210,6 +248,8 @@ class PermissionBuilder(
         val requestChain = RequestChain()
         requestChain.addTaskToChain(RequestNormalPermissions(this))
         requestChain.addTaskToChain(RequestBackgroundLocationPermission(this))
+        requestChain.addTaskToChain(RequestSystemAlertWindowPermission(this))
+        requestChain.addTaskToChain(RequestWriteSettingsPermission(this))
         requestChain.runTask()
     }
 
@@ -248,8 +288,24 @@ class PermissionBuilder(
         invisibleFragment.requestAccessBackgroundLocationPermissionNow(this,chainTask)
     }
 
+    fun requestSystemAlertWindowPermissionNow(chainTask: ChainTask){
+        invisibleFragment.requestSystemAlertWindowPermissionNow(this,chainTask)
+    }
+
+    fun requestSystemSettingsPermissionNow(chainTask: ChainTask){
+        invisibleFragment.requestSystemSettingsPermissionNow(this,chainTask)
+    }
+
     fun shouldRequestBackgroundLocationPermission(): Boolean {
         return specialPermissions.contains(RequestBackgroundLocationPermission.ACCESS_BACKGROUND_LOCATION)
+    }
+
+    fun shouldRequestSystemAlertWindowPermission(): Boolean {
+        return specialPermissions.contains(Manifest.permission.SYSTEM_ALERT_WINDOW)
+    }
+
+    fun shouldRequestWriteSettingsPermission(): Boolean {
+        return specialPermissions.contains(Manifest.permission.WRITE_SETTINGS)
     }
 
     private fun forwardToSettings(permissions: List<String>){

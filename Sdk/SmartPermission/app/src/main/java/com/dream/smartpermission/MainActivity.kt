@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
     private fun initListener() {
         mBinding.btnPermission1.setOnClickListener {
             SmartPermission.init(this)
-                .permissions(listOf(android.Manifest.permission.ACCESS_FINE_LOCATION,android.Manifest.permission.ACCESS_BACKGROUND_LOCATION/*,android.Manifest.permission.CALL_PHONE*/))
+                .permissions(listOf(android.Manifest.permission.ACCESS_FINE_LOCATION,android.Manifest.permission.WRITE_SETTINGS/*,android.Manifest.permission.CALL_PHONE*/))
                 .explainReasonBeforeRequest()
                 .onExplainRequestReason{scope,deniedList,beforeRequest->
 //                    if(beforeRequest){

@@ -9,6 +9,7 @@ import android.os.Handler
 import android.os.Looper
 import android.provider.Settings
 import android.util.Log
+import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import com.dream.permission.SmartPermission
@@ -44,6 +45,24 @@ class InvisibleFragment: Fragment() {
             }
         }
 
+    private val requestSystemAlertWindowLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
+            postForResult {
+                Log.d("erdai", "requestSystemAlertWindowLauncher 向系统请求悬浮窗权限")
+                onRequestSystemAlertWindowPermissionResult()
+            }
+        }
+
+    private val requestWriteSettingsWindowLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
+            postForResult {
+                Log.d("erdai", "requestWriteSettingsWindowLauncher 向系统请求修改系统设置权限")
+                onRequestWriteSettingsPermissionResult()
+            }
+        }
+
+
+
 
     private val forwardToSettingsLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
@@ -71,6 +90,37 @@ class InvisibleFragment: Fragment() {
         pb = permissionBuilder
         task = chainTask
         requestBackgroundLocationLauncher.launch(RequestBackgroundLocationPermission.ACCESS_BACKGROUND_LOCATION)
+    }
+
+    fun requestSystemAlertWindowPermissionNow(
+        permissionBuilder: PermissionBuilder,
+        chainTask: ChainTask,
+    ) {
+        pb = permissionBuilder
+        task = chainTask
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.canDrawOverlays(pb.activity)){
+            val intent = Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION)
+            intent.data = Uri.parse("package:${requireActivity().packageName}")
+            requestSystemAlertWindowLauncher.launch(intent)
+        }else{
+            onRequestSystemAlertWindowPermissionResult()
+        }
+
+    }
+
+    fun requestSystemSettingsPermissionNow(
+        permissionBuilder: PermissionBuilder,
+        chainTask: ChainTask,
+    ) {
+        pb = permissionBuilder
+        task = chainTask
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.System.canWrite(pb.activity)){
+            val intent = Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS)
+            intent.data = Uri.parse("package:${requireActivity().packageName}")
+            requestWriteSettingsWindowLauncher.launch(intent)
+        }else{
+            onRequestWriteSettingsPermissionResult()
+        }
     }
 
     private fun onRequestNormalPermissionsResult(grantResults: Map<String,Boolean>){
@@ -179,6 +229,48 @@ class InvisibleFragment: Fragment() {
         }
     }
 
+    private fun onRequestSystemAlertWindowPermissionResult() {
+        if(checkForGC()){
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+                if(Settings.canDrawOverlays(requireContext())){
+                    task.finish()
+                }else if(pb.explainReasonCallback != null || pb.explainReasonCallbackWithBeforeParam != null){
+                    if(pb.explainReasonCallbackWithBeforeParam != null){
+                        pb.explainReasonCallbackWithBeforeParam!!.onExplainReason(task.explainScope,
+                            listOf(Manifest.permission.SYSTEM_ALERT_WINDOW),
+                            false
+                        )
+                    }else{
+                        pb.explainReasonCallback!!.onExplainReason(task.explainScope, listOf(Manifest.permission.SYSTEM_ALERT_WINDOW))
+                    }
+                }
+            }else{
+                task.finish()
+            }
+        }
+    }
+
+    private fun onRequestWriteSettingsPermissionResult() {
+        if(checkForGC()){
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+                if(Settings.System.canWrite(requireContext())){
+                    task.finish()
+                }else if(pb.explainReasonCallback != null || pb.explainReasonCallbackWithBeforeParam != null){
+                    if(pb.explainReasonCallbackWithBeforeParam != null){
+                        pb.explainReasonCallbackWithBeforeParam!!.onExplainReason(task.explainScope,
+                            listOf(Manifest.permission.WRITE_SETTINGS),
+                            false
+                        )
+                    }else{
+                        pb.explainReasonCallback!!.onExplainReason(task.explainScope, listOf(Manifest.permission.WRITE_SETTINGS))
+                    }
+                }
+            }else{
+                task.finish()
+            }
+        }
+    }
+
 
 
 
@@ -231,6 +323,8 @@ class InvisibleFragment: Fragment() {
         intent.data = uri
         forwardToSettingsLauncher.launch(intent)
     }
+
+
 
 
 }

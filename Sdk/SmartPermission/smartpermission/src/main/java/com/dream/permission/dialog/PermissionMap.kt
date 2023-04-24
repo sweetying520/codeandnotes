@@ -14,7 +14,10 @@ import com.dream.permission.request.RequestBackgroundLocationPermission
 
 
 var allSpecialPermissions = setOf(
-    RequestBackgroundLocationPermission.ACCESS_BACKGROUND_LOCATION
+    RequestBackgroundLocationPermission.ACCESS_BACKGROUND_LOCATION,
+    Manifest.permission.SYSTEM_ALERT_WINDOW,
+    Manifest.permission.WRITE_SETTINGS
+
 )
 
 

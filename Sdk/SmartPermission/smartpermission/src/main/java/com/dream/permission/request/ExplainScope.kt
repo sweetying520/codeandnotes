@@ -2,6 +2,7 @@ package com.dream.permission.request
 
 import androidx.fragment.app.DialogFragment
 import com.dream.permission.dialog.RationaleDialog
+import com.dream.permission.dialog.RationaleDialogFragment
 
 /**
  * function: waiting for add
@@ -24,8 +25,8 @@ class ExplainScope internal constructor(
     }
 
 
-    fun showRequestReasonDialog(dialogFragment: DialogFragment){
-
+    fun showRequestReasonDialog(dialogFragment: RationaleDialogFragment){
+        pb.showHandlePermissionDialog(chainTask,true,dialogFragment)
     }
 
 
