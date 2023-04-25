@@ -1,6 +1,7 @@
 package com.dream.permission.request
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
@@ -9,8 +10,8 @@ import android.os.Handler
 import android.os.Looper
 import android.provider.Settings
 import android.util.Log
-import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.dream.permission.SmartPermission
 
@@ -61,6 +62,14 @@ class InvisibleFragment: Fragment() {
             }
         }
 
+    private val requestManageExternalStorageLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
+            postForResult {
+                Log.d("erdai", "requestManageExternalStorageLauncher 向系统请求管理存储权限")
+                onRequestManageExternalStoragePermissionResult()
+            }
+        }
+
 
 
 
@@ -108,7 +117,7 @@ class InvisibleFragment: Fragment() {
 
     }
 
-    fun requestSystemSettingsPermissionNow(
+    fun requestWriteSettingsPermissionNow(
         permissionBuilder: PermissionBuilder,
         chainTask: ChainTask,
     ) {
@@ -122,6 +131,27 @@ class InvisibleFragment: Fragment() {
             onRequestWriteSettingsPermissionResult()
         }
     }
+
+    @RequiresApi(Build.VERSION_CODES.R)
+    @SuppressLint("QueryPermissionsNeeded")
+    fun requestManageExternalStoragePermissionNow(
+        permissionBuilder: PermissionBuilder,
+        chainTask: ChainTask,
+    ) {
+        pb = permissionBuilder
+        task = chainTask
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.R && !Environment.isExternalStorageManager()){
+            var intent = Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION)
+            intent.data = Uri.parse("package:${requireActivity().packageName}")
+            if(intent.resolveActivity(requireActivity().packageManager) == null){
+                intent = Intent(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION)
+            }
+            requestManageExternalStorageLauncher.launch(intent)
+        }else{
+            onRequestManageExternalStoragePermissionResult()
+        }
+    }
+
 
     private fun onRequestNormalPermissionsResult(grantResults: Map<String,Boolean>){
         if(checkForGC()){
@@ -323,8 +353,6 @@ class InvisibleFragment: Fragment() {
         intent.data = uri
         forwardToSettingsLauncher.launch(intent)
     }
-
-
 
 
 }

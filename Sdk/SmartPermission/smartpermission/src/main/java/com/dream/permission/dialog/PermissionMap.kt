@@ -4,6 +4,7 @@ import android.Manifest
 import android.annotation.TargetApi
 import android.os.Build
 import com.dream.permission.request.RequestBackgroundLocationPermission
+import com.dream.permission.request.RequestManageExternalStoragePermission
 
 /**
  * function: waiting for add
@@ -16,7 +17,8 @@ import com.dream.permission.request.RequestBackgroundLocationPermission
 var allSpecialPermissions = setOf(
     RequestBackgroundLocationPermission.ACCESS_BACKGROUND_LOCATION,
     Manifest.permission.SYSTEM_ALERT_WINDOW,
-    Manifest.permission.WRITE_SETTINGS
+    Manifest.permission.WRITE_SETTINGS,
+    RequestManageExternalStoragePermission.MANAGE_EXTERNAL_STORAGE
 
 )
 

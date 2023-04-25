@@ -6,7 +6,7 @@ import android.app.Dialog
 import android.content.pm.ActivityInfo
 import android.content.res.Configuration
 import android.os.Build
-import androidx.fragment.app.DialogFragment
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
@@ -17,7 +17,6 @@ import com.dream.permission.callback.RequestCallback
 import com.dream.permission.dialog.DefaultDialog
 import com.dream.permission.dialog.RationaleDialog
 import com.dream.permission.dialog.RationaleDialogFragment
-import com.dream.permission.dialog.permissionMapOnT
 
 /**
  * function: waiting for add
@@ -250,6 +249,7 @@ class PermissionBuilder(
         requestChain.addTaskToChain(RequestBackgroundLocationPermission(this))
         requestChain.addTaskToChain(RequestSystemAlertWindowPermission(this))
         requestChain.addTaskToChain(RequestWriteSettingsPermission(this))
+        requestChain.addTaskToChain(RequestManageExternalStoragePermission(this))
         requestChain.runTask()
     }
 
@@ -293,7 +293,12 @@ class PermissionBuilder(
     }
 
     fun requestSystemSettingsPermissionNow(chainTask: ChainTask){
-        invisibleFragment.requestSystemSettingsPermissionNow(this,chainTask)
+        invisibleFragment.requestWriteSettingsPermissionNow(this,chainTask)
+    }
+
+    @RequiresApi(Build.VERSION_CODES.R)
+    fun requestManageExternalStoragePermissionNow(chainTask: ChainTask) {
+        invisibleFragment.requestManageExternalStoragePermissionNow(this,chainTask)
     }
 
     fun shouldRequestBackgroundLocationPermission(): Boolean {
@@ -306,6 +311,10 @@ class PermissionBuilder(
 
     fun shouldRequestWriteSettingsPermission(): Boolean {
         return specialPermissions.contains(Manifest.permission.WRITE_SETTINGS)
+    }
+
+    fun shouldRequestManageExternalStoragePermission(): Boolean {
+        return specialPermissions.contains(RequestManageExternalStoragePermission.MANAGE_EXTERNAL_STORAGE)
     }
 
     private fun forwardToSettings(permissions: List<String>){

@@ -2,6 +2,7 @@ package com.dream.permission.request
 
 import android.Manifest
 import android.os.Build
+import android.os.Environment
 import android.provider.Settings
 import android.util.Log
 import com.dream.permission.SmartPermission
@@ -66,6 +67,15 @@ internal abstract class BaseTask(@JvmField var pb: PermissionBuilder): ChainTask
                     deniedList.add(Manifest.permission.WRITE_SETTINGS)
                 }
             }
+
+            if(pb.shouldRequestManageExternalStoragePermission()){
+                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.R && Environment.isExternalStorageManager()){
+                    pb.grantedPermissions.add(RequestManageExternalStoragePermission.MANAGE_EXTERNAL_STORAGE)
+                }else{
+                    deniedList.add(RequestManageExternalStoragePermission.MANAGE_EXTERNAL_STORAGE)
+                }
+            }
+
 
             //todo 一些特殊的权限
 
