@@ -71,6 +71,14 @@ class InvisibleFragment: Fragment() {
         }
 
 
+    private val requestInstallPackageLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
+            postForResult {
+                Log.d("erdai", "requestInstallPackageLauncher 向系统请求安装未知来源包")
+                onRequestInstallPackagePermissionResult()
+            }
+        }
+
 
 
     private val forwardToSettingsLauncher =
@@ -132,7 +140,7 @@ class InvisibleFragment: Fragment() {
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.R)
+
     @SuppressLint("QueryPermissionsNeeded")
     fun requestManageExternalStoragePermissionNow(
         permissionBuilder: PermissionBuilder,
@@ -149,6 +157,18 @@ class InvisibleFragment: Fragment() {
             requestManageExternalStorageLauncher.launch(intent)
         }else{
             onRequestManageExternalStoragePermissionResult()
+        }
+    }
+
+    fun requestInstallPackagePermissionNow(permissionBuilder: PermissionBuilder, chainTask: ChainTask) {
+        pb = permissionBuilder
+        task = chainTask
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && !pb.activity.packageManager.canRequestPackageInstalls()){
+            val intent = Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES)
+            intent.data = Uri.parse("package:${requireActivity().packageName}")
+            requestInstallPackageLauncher.launch(intent)
+        }else{
+            onRequestInstallPackagePermissionResult()
         }
     }
 
@@ -331,6 +351,27 @@ class InvisibleFragment: Fragment() {
         }
     }
 
+    private fun onRequestInstallPackagePermissionResult() {
+        if(checkForGC()){
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+                if(requireActivity().packageManager.canRequestPackageInstalls()){
+                    task.finish()
+                }else if(pb.explainReasonCallback != null || pb.explainReasonCallbackWithBeforeParam != null){
+                    if(pb.explainReasonCallbackWithBeforeParam != null){
+                        pb.explainReasonCallbackWithBeforeParam!!.onExplainReason(task.explainScope,
+                            listOf(RequestInstallPackagePermission.REQUEST_INSTALL_PACKAGE),
+                            false
+                        )
+                    }else{
+                        pb.explainReasonCallback!!.onExplainReason(task.explainScope, listOf(RequestInstallPackagePermission.REQUEST_INSTALL_PACKAGE))
+                    }
+                }
+            }else{
+                task.finish()
+            }
+        }
+    }
+
 
 
     private fun checkForGC(): Boolean{
@@ -353,6 +394,5 @@ class InvisibleFragment: Fragment() {
         intent.data = uri
         forwardToSettingsLauncher.launch(intent)
     }
-
 
 }

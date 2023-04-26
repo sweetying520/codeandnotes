@@ -4,6 +4,7 @@ import android.Manifest
 import android.annotation.TargetApi
 import android.os.Build
 import com.dream.permission.request.RequestBackgroundLocationPermission
+import com.dream.permission.request.RequestInstallPackagePermission
 import com.dream.permission.request.RequestManageExternalStoragePermission
 
 /**
@@ -18,7 +19,8 @@ var allSpecialPermissions = setOf(
     RequestBackgroundLocationPermission.ACCESS_BACKGROUND_LOCATION,
     Manifest.permission.SYSTEM_ALERT_WINDOW,
     Manifest.permission.WRITE_SETTINGS,
-    RequestManageExternalStoragePermission.MANAGE_EXTERNAL_STORAGE
+    RequestManageExternalStoragePermission.MANAGE_EXTERNAL_STORAGE,
+    RequestInstallPackagePermission.REQUEST_INSTALL_PACKAGE
 
 )
 

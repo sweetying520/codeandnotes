@@ -76,6 +76,14 @@ internal abstract class BaseTask(@JvmField var pb: PermissionBuilder): ChainTask
                 }
             }
 
+            if(pb.shouldRequestInstallPackagePermission()){
+                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && pb.activity.packageManager.canRequestPackageInstalls()){
+                    pb.grantedPermissions.add(RequestInstallPackagePermission.REQUEST_INSTALL_PACKAGE)
+                }else{
+                    deniedList.add(RequestInstallPackagePermission.REQUEST_INSTALL_PACKAGE)
+                }
+            }
+
 
             //todo 一些特殊的权限
 

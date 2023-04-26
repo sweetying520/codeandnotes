@@ -1,5 +1,6 @@
 package com.dream.smartpermission
 
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -22,8 +23,18 @@ class MainActivity : AppCompatActivity() {
 
     private fun initListener() {
         mBinding.btnPermission1.setOnClickListener {
+            val requestList = mutableListOf<String>()
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                requestList.add(android.Manifest.permission.BLUETOOTH_SCAN)
+                requestList.add(android.Manifest.permission.BLUETOOTH_ADVERTISE)
+                requestList.add(android.Manifest.permission.BLUETOOTH_CONNECT)
+            }else{
+                requestList.add(android.Manifest.permission.BLUETOOTH)
+                requestList.add(android.Manifest.permission.BLUETOOTH_ADMIN)
+            }
             SmartPermission.init(this)
-                .permissions(listOf(android.Manifest.permission.ACCESS_FINE_LOCATION,android.Manifest.permission.MANAGE_EXTERNAL_STORAGE/*,android.Manifest.permission.CALL_PHONE*/))
+                .permissions(requestList)
+                //.permissions(listOf(android.Manifest.permission.ACCESS_FINE_LOCATION,android.Manifest.permission.REQUEST_INSTALL_PACKAGES/*,android.Manifest.permission.CALL_PHONE*/))
                 .explainReasonBeforeRequest()
                 .onExplainRequestReason{scope,deniedList,beforeRequest->
 //                    if(beforeRequest){

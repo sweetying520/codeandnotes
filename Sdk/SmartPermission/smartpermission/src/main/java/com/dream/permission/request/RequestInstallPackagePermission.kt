@@ -1,9 +1,7 @@
 package com.dream.permission.request
 
-import android.Manifest
 import android.os.Build
 import android.os.Environment
-import android.provider.Settings
 import androidx.annotation.RequiresApi
 
 /**
@@ -12,26 +10,26 @@ import androidx.annotation.RequiresApi
  * @author zy
  * @since 2023/4/25
  */
-internal class RequestManageExternalStoragePermission internal constructor(permissionBuilder: PermissionBuilder): BaseTask(permissionBuilder){
+internal class RequestInstallPackagePermission internal constructor(permissionBuilder: PermissionBuilder): BaseTask(permissionBuilder){
 
 
     companion object{
         /**
-         * Android 11 之后才有，因此在申请的时候，注意进行权限的判断
+         * Android 6.0 之后才有，因此在申请的时候，注意进行权限的判断
          */
-        const val MANAGE_EXTERNAL_STORAGE = "android.permission.MANAGE_EXTERNAL_STORAGE"
+        const val REQUEST_INSTALL_PACKAGE = "android.permission.REQUEST_INSTALL_PACKAGES"
     }
 
 
     override fun request() {
-        if(pb.shouldRequestManageExternalStoragePermission() && Build.VERSION.SDK_INT >= Build.VERSION_CODES.R){
-            if(Environment.isExternalStorageManager()){
+        if(pb.shouldRequestInstallPackagePermission() && Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && pb.targetSdkVersion >= Build.VERSION_CODES.O){
+            if(pb.activity.packageManager.canRequestPackageInstalls()){
                 finish()
                 return
             }
 
             if(pb.explainReasonCallback != null || pb.explainReasonCallbackWithBeforeParam != null){
-                val requestList = mutableListOf(MANAGE_EXTERNAL_STORAGE)
+                val requestList = mutableListOf(REQUEST_INSTALL_PACKAGE)
                 if(pb.explainReasonCallbackWithBeforeParam != null){
                     pb.explainReasonCallbackWithBeforeParam!!.onExplainReason(explainScope,requestList,true)
                 }else{
@@ -40,14 +38,13 @@ internal class RequestManageExternalStoragePermission internal constructor(permi
             }else{
                 finish()
             }
-            return
+        }else{
+            finish()
         }
-
-        finish()
     }
 
     override fun requestAgain(permissions: MutableList<String>?) {
-        pb.requestManageExternalStoragePermissionNow(this)
+        pb.requestInstallPackagePermissionNow(this)
     }
 
 }

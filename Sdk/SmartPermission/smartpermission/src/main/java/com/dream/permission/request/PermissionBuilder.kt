@@ -250,6 +250,7 @@ class PermissionBuilder(
         requestChain.addTaskToChain(RequestSystemAlertWindowPermission(this))
         requestChain.addTaskToChain(RequestWriteSettingsPermission(this))
         requestChain.addTaskToChain(RequestManageExternalStoragePermission(this))
+        requestChain.addTaskToChain(RequestInstallPackagePermission(this))
         requestChain.runTask()
     }
 
@@ -296,9 +297,12 @@ class PermissionBuilder(
         invisibleFragment.requestWriteSettingsPermissionNow(this,chainTask)
     }
 
-    @RequiresApi(Build.VERSION_CODES.R)
     fun requestManageExternalStoragePermissionNow(chainTask: ChainTask) {
         invisibleFragment.requestManageExternalStoragePermissionNow(this,chainTask)
+    }
+
+    fun requestInstallPackagePermissionNow(chainTask: ChainTask) {
+        invisibleFragment.requestInstallPackagePermissionNow(this,chainTask)
     }
 
     fun shouldRequestBackgroundLocationPermission(): Boolean {
@@ -317,6 +321,10 @@ class PermissionBuilder(
         return specialPermissions.contains(RequestManageExternalStoragePermission.MANAGE_EXTERNAL_STORAGE)
     }
 
+    fun shouldRequestInstallPackagePermission(): Boolean {
+        return specialPermissions.contains(RequestInstallPackagePermission.REQUEST_INSTALL_PACKAGE)
+    }
+
     private fun forwardToSettings(permissions: List<String>){
         forwardPermissions.clear()
         forwardPermissions.addAll(permissions)
@@ -327,7 +335,6 @@ class PermissionBuilder(
         removeInvisibleFragment()
         restoreOrientation()
     }
-
 
 
     init {
