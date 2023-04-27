@@ -3,7 +3,9 @@ package com.dream.permission.dialog
 import android.Manifest
 import android.annotation.TargetApi
 import android.os.Build
+import com.dream.permission.SmartPermission
 import com.dream.permission.request.RequestBackgroundLocationPermission
+import com.dream.permission.request.RequestBodySensorsBackgroundPermission
 import com.dream.permission.request.RequestInstallPackagePermission
 import com.dream.permission.request.RequestManageExternalStoragePermission
 
@@ -20,7 +22,9 @@ var allSpecialPermissions = setOf(
     Manifest.permission.SYSTEM_ALERT_WINDOW,
     Manifest.permission.WRITE_SETTINGS,
     RequestManageExternalStoragePermission.MANAGE_EXTERNAL_STORAGE,
-    RequestInstallPackagePermission.REQUEST_INSTALL_PACKAGE
+    RequestInstallPackagePermission.REQUEST_INSTALL_PACKAGE,
+    SmartPermission.Permission.POST_NOTIFICATIONS,
+    RequestBodySensorsBackgroundPermission.BODY_SENSORS_BACKGROUND
 
 )
 

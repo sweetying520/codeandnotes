@@ -79,6 +79,21 @@ class InvisibleFragment: Fragment() {
             }
         }
 
+    private val requestPostNotificationsLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
+            postForResult {
+                Log.d("erdai", "requestPostNotificationsLauncher 向系统请求通知权限")
+                onRequestPostNotificationsPermissionResult()
+            }
+        }
+
+    private val requestBodySensorsBackgroundLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()){
+            postForResult {
+                Log.d("erdai", "requestBodySensorsBackgroundLauncher 向系统请求后台身体传感器权限")
+                onRequestBodySensorsBackgroundPermissionResult(it)
+            }
+        }
 
 
     private val forwardToSettingsLauncher =
@@ -170,6 +185,27 @@ class InvisibleFragment: Fragment() {
         }else{
             onRequestInstallPackagePermissionResult()
         }
+    }
+
+    fun requestPostNotificationsPermissionNow(
+        permissionBuilder: PermissionBuilder,
+        chainTask: ChainTask,
+    ) {
+        pb = permissionBuilder
+        task = chainTask
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            val intent = Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS)
+            intent.putExtra(Settings.EXTRA_APP_PACKAGE,requireActivity().packageName)
+            requestPostNotificationsLauncher.launch(intent)
+        }else{
+            onRequestPostNotificationsPermissionResult()
+        }
+    }
+
+    fun requestBodySensorsBackgroundPermissionNow(permissionBuilder: PermissionBuilder, chainTask: ChainTask) {
+        pb = permissionBuilder
+        task = chainTask
+        requestBodySensorsBackgroundLauncher.launch(RequestBodySensorsBackgroundPermission.BODY_SENSORS_BACKGROUND)
     }
 
 
@@ -372,6 +408,62 @@ class InvisibleFragment: Fragment() {
         }
     }
 
+    private fun onRequestPostNotificationsPermissionResult() {
+        if(checkForGC()){
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+                if(SmartPermission.areNotificationsEnabled(requireContext())){
+                    task.finish()
+                }else if(pb.explainReasonCallback != null || pb.explainReasonCallbackWithBeforeParam != null){
+                    if(pb.explainReasonCallbackWithBeforeParam != null){
+                        pb.explainReasonCallbackWithBeforeParam!!.onExplainReason(task.explainScope,
+                            listOf(SmartPermission.Permission.POST_NOTIFICATIONS),
+                            false
+                        )
+                    }else{
+                        pb.explainReasonCallback!!.onExplainReason(task.explainScope, listOf(SmartPermission.Permission.POST_NOTIFICATIONS))
+                    }
+                }
+            }else{
+                task.finish()
+            }
+        }
+    }
+
+    private fun onRequestBodySensorsBackgroundPermissionResult(granted: Boolean) {
+        if(checkForGC()){
+            postForResult {
+                if(granted){
+                    pb.grantedPermissions.add(RequestBodySensorsBackgroundPermission.BODY_SENSORS_BACKGROUND)
+                    pb.deniedPermissions.remove(RequestBodySensorsBackgroundPermission.BODY_SENSORS_BACKGROUND)
+                    pb.permanentDeninedPermissions.remove(RequestBodySensorsBackgroundPermission.BODY_SENSORS_BACKGROUND)
+                    task.finish()
+                }else{
+                    var goesRequestCallback = true
+                    val shouldShowRationale = shouldShowRequestPermissionRationale(RequestBodySensorsBackgroundPermission.BODY_SENSORS_BACKGROUND)
+                    if((pb.explainReasonCallback != null || pb.explainReasonCallbackWithBeforeParam != null) && shouldShowRationale){
+                        goesRequestCallback = false
+                        val permissionsToExplain = ArrayList<String>()
+                        permissionsToExplain.add(RequestBodySensorsBackgroundPermission.BODY_SENSORS_BACKGROUND)
+                        if(pb.explainReasonCallbackWithBeforeParam != null){
+                            pb.explainReasonCallbackWithBeforeParam!!.onExplainReason(task.explainScope,permissionsToExplain,false)
+                        }else{
+                            pb.explainReasonCallback!!.onExplainReason(task.explainScope,permissionsToExplain)
+                        }
+                    }else if(pb.forwardToSettingsCallback != null && !shouldShowRationale){
+                        goesRequestCallback = false
+                        val permissionToForward = ArrayList<String>()
+                        permissionToForward.add(RequestBodySensorsBackgroundPermission.BODY_SENSORS_BACKGROUND)
+                        pb.forwardToSettingsCallback!!.onForwardToSettings(task.forwardScope,permissionToForward)
+                    }
+
+                    if(goesRequestCallback || !pb.showDialogCalled){
+                        task.finish()
+                    }
+                }
+            }
+        }
+    }
+
 
 
     private fun checkForGC(): Boolean{
@@ -394,5 +486,8 @@ class InvisibleFragment: Fragment() {
         intent.data = uri
         forwardToSettingsLauncher.launch(intent)
     }
+
+
+
 
 }

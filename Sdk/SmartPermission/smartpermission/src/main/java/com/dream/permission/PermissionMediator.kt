@@ -50,7 +50,13 @@ class PermissionMediator {
                 normalPermissionSet.add(RequestBackgroundLocationPermission.ACCESS_BACKGROUND_LOCATION)
             }
         }
-        //todo 逻辑补齐
+
+        if(SmartPermission.Permission.POST_NOTIFICATIONS in specialPermissionSet){
+            if(osVersion >= Build.VERSION_CODES.TIRAMISU && targetSdkVersion >= Build.VERSION_CODES.TIRAMISU){
+                specialPermissionSet.remove(SmartPermission.Permission.POST_NOTIFICATIONS)
+                normalPermissionSet.add(SmartPermission.Permission.POST_NOTIFICATIONS)
+            }
+        }
         return PermissionBuilder(activity,fragment,normalPermissionSet,specialPermissionSet)
     }
 

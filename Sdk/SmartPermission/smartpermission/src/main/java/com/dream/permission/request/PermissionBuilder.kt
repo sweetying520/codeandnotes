@@ -10,6 +10,7 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
+import com.dream.permission.SmartPermission
 import com.dream.permission.callback.ExplainReasonCallback
 import com.dream.permission.callback.ExplainReasonCallbackWithBeforeParam
 import com.dream.permission.callback.ForwardToSettingsCallback
@@ -251,6 +252,8 @@ class PermissionBuilder(
         requestChain.addTaskToChain(RequestWriteSettingsPermission(this))
         requestChain.addTaskToChain(RequestManageExternalStoragePermission(this))
         requestChain.addTaskToChain(RequestInstallPackagePermission(this))
+        requestChain.addTaskToChain(RequestPostNotificationsPermission(this))
+        requestChain.addTaskToChain(RequestBodySensorsBackgroundPermission(this))
         requestChain.runTask()
     }
 
@@ -305,6 +308,14 @@ class PermissionBuilder(
         invisibleFragment.requestInstallPackagePermissionNow(this,chainTask)
     }
 
+    fun requestPostNotificationsPermissionNow(chainTask: ChainTask) {
+        invisibleFragment.requestPostNotificationsPermissionNow(this,chainTask)
+    }
+
+    fun requestBodySensorsBackgroundPermissionNow(chainTask: ChainTask) {
+        invisibleFragment.requestBodySensorsBackgroundPermissionNow(this,chainTask)
+    }
+
     fun shouldRequestBackgroundLocationPermission(): Boolean {
         return specialPermissions.contains(RequestBackgroundLocationPermission.ACCESS_BACKGROUND_LOCATION)
     }
@@ -324,6 +335,15 @@ class PermissionBuilder(
     fun shouldRequestInstallPackagePermission(): Boolean {
         return specialPermissions.contains(RequestInstallPackagePermission.REQUEST_INSTALL_PACKAGE)
     }
+
+    fun shouldRequestPostNotificationsPermission(): Boolean {
+        return specialPermissions.contains(SmartPermission.Permission.POST_NOTIFICATIONS)
+    }
+
+    fun shouldRequestBodySensorsBackgroundPermission(): Boolean {
+        return specialPermissions.contains(RequestBodySensorsBackgroundPermission.BODY_SENSORS_BACKGROUND)
+    }
+
 
     private fun forwardToSettings(permissions: List<String>){
         forwardPermissions.clear()

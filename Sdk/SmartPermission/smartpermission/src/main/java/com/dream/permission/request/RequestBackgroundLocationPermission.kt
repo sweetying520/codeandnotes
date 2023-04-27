@@ -23,7 +23,6 @@ internal class RequestBackgroundLocationPermission internal constructor(permissi
     }
 
     override fun request() {
-        Log.d("erdai", "RequestBackgroundLocationPermission request...")
         if(pb.shouldRequestBackgroundLocationPermission()){
             if(Build.VERSION.SDK_INT < Build.VERSION_CODES.Q){
                 pb.specialPermissions.remove(ACCESS_BACKGROUND_LOCATION)

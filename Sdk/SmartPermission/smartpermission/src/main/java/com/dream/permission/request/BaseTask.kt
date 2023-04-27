@@ -85,7 +85,21 @@ internal abstract class BaseTask(@JvmField var pb: PermissionBuilder): ChainTask
             }
 
 
-            //todo 一些特殊的权限
+            if(pb.shouldRequestPostNotificationsPermission()){
+                if(SmartPermission.areNotificationsEnabled(pb.activity)){
+                    pb.grantedPermissions.add(SmartPermission.Permission.POST_NOTIFICATIONS)
+                }else{
+                    deniedList.add(SmartPermission.Permission.POST_NOTIFICATIONS)
+                }
+            }
+
+            if(pb.shouldRequestBodySensorsBackgroundPermission()){
+                if(SmartPermission.isGranted(pb.activity,RequestBodySensorsBackgroundPermission.BODY_SENSORS_BACKGROUND)){
+                    pb.grantedPermissions.add(RequestBodySensorsBackgroundPermission.BODY_SENSORS_BACKGROUND)
+                }else{
+                    deniedList.add(RequestBodySensorsBackgroundPermission.BODY_SENSORS_BACKGROUND)
+                }
+            }
 
             if(pb.requestCallback != null){
                 pb.requestCallback!!.onResult(deniedList.isEmpty(),ArrayList(pb.grantedPermissions),deniedList)

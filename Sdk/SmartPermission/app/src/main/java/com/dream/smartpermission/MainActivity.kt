@@ -24,17 +24,39 @@ class MainActivity : AppCompatActivity() {
     private fun initListener() {
         mBinding.btnPermission1.setOnClickListener {
             val requestList = mutableListOf<String>()
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                requestList.add(android.Manifest.permission.BLUETOOTH_SCAN)
-                requestList.add(android.Manifest.permission.BLUETOOTH_ADVERTISE)
-                requestList.add(android.Manifest.permission.BLUETOOTH_CONNECT)
-            }else{
-                requestList.add(android.Manifest.permission.BLUETOOTH)
-                requestList.add(android.Manifest.permission.BLUETOOTH_ADMIN)
+            //1、蓝牙
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+//                requestList.add(android.Manifest.permission.BLUETOOTH_SCAN)
+//                requestList.add(android.Manifest.permission.BLUETOOTH_ADVERTISE)
+//                requestList.add(android.Manifest.permission.BLUETOOTH_CONNECT)
+//            }else{
+//                requestList.add(android.Manifest.permission.BLUETOOTH)
+//                requestList.add(android.Manifest.permission.BLUETOOTH_ADMIN)
+//            }
+            //2、存储
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+//                requestList.add(android.Manifest.permission.READ_MEDIA_IMAGES)
+//                requestList.add(android.Manifest.permission.READ_MEDIA_VIDEO)
+//                requestList.add(android.Manifest.permission.READ_MEDIA_AUDIO)
+//            }else{
+//                requestList.add(android.Manifest.permission.READ_EXTERNAL_STORAGE)
+//            }
+
+            //3、附近 wifi 权限
+//            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
+//                requestList.add(android.Manifest.permission.NEARBY_WIFI_DEVICES)
+//            }
+
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH){
+                requestList.add(android.Manifest.permission.BODY_SENSORS)
             }
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
+                requestList.add(android.Manifest.permission.BODY_SENSORS_BACKGROUND)
+            }
+
             SmartPermission.init(this)
                 .permissions(requestList)
-                //.permissions(listOf(android.Manifest.permission.ACCESS_FINE_LOCATION,android.Manifest.permission.REQUEST_INSTALL_PACKAGES/*,android.Manifest.permission.CALL_PHONE*/))
+//                .permissions(listOf(/*android.Manifest.permission.ACCESS_FINE_LOCATION,android.Manifest.permission.REQUEST_INSTALL_PACKAGES*//*,android.Manifest.permission.CALL_PHONE*/))
                 .explainReasonBeforeRequest()
                 .onExplainRequestReason{scope,deniedList,beforeRequest->
 //                    if(beforeRequest){
