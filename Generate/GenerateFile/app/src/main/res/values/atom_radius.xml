@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+    <dimen name="Radius_22">22dp</dimen>
+    <dimen name="Radius_20">20dp</dimen>
+    <dimen name="Radius_16">16dp</dimen>
+    <dimen name="Radius_12">12dp</dimen>
+    <dimen name="Radius_8">8dp</dimen>
+    <dimen name="Radius_6">6dp</dimen>
+    <dimen name="Radius_4">4dp</dimen>
+    <dimen name="Radius_2">2dp</dimen>
+</resources>

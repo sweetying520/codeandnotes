@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resources>
+    <dimen name="Padding_32">32dp</dimen>
+    <dimen name="Padding_24">24dp</dimen>
+    <dimen name="Padding_20">20dp</dimen>
+    <dimen name="Padding_16">16dp</dimen>
+    <dimen name="Padding_14">14dp</dimen>
+    <dimen name="Padding_12">12dp</dimen>
+    <dimen name="Padding_10">10dp</dimen>
+    <dimen name="Padding_8">8dp</dimen>
+    <dimen name="Padding_6">6dp</dimen>
+    <dimen name="Padding_4">4dp</dimen>
+    <dimen name="Padding_2">2dp</dimen>
+</resources>
