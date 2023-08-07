@@ -1,29 +1,32 @@
-import 'package:flutter/material.dart';
 import 'dart:async';
+import 'dart:io';
 
-import 'package:flutter/services.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_plugin_with_pigeon/all_types_pigeon_generate.dart';
-import 'package:flutter_plugin_with_pigeon/flutter_plugin_with_pigeon.dart';
+import 'package:permission_request/permission_utils.dart';
+import 'package:permission_request/schema_generate.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatefulWidget{
   const MyApp({Key? key}) : super(key: key);
 
   @override
   State<MyApp> createState() => _MyAppState();
 }
 
-class _MyAppState extends State<MyApp> {
+class _MyAppState extends State<MyApp> implements FlutterEverything  {
 
   var allTypePigeon = HostEverything();
+  var schema = AkuPermission();
 
   @override
   void initState() {
     super.initState();
     initPlatformState();
+    FlutterEverything.setup(this);
   }
 
   // Platform messages are asynchronous, so we initialize in an async method.
@@ -56,10 +59,27 @@ class _MyAppState extends State<MyApp> {
               var everything = await allTypePigeon.echo(eve);
               print('${everything.aString}  ${everything.aBool}  ${everything.aInt}');
             }, child: const Text("Pigeon Test 2")
+            ),
+            ElevatedButton(onPressed: () async{
+              var permissions = [Permissions.CAMERA,Permissions.CALL_PHONE];
+              var permissionsGroup = [PermissionGroup.Camera];
+              var permsIndexList = PermissionUtils.getPermissionsIndex(Platform.isAndroid ? permissions : permissionsGroup);
+              var resultMap = await schema.request(permsIndexList);
+              print('resultMap====> $resultMap');
+            }, child: const Text("RequestPermission")
             )
           ],
         ),
       ),
     );
+  }
+
+
+  @override
+  void giveMeEverythingFlutter(Everything everything) {
+    print('giveMeEverythingFlutter： ${everything.aBool}');
+    print('giveMeEverythingFlutter： ${everything.aDouble}');
+    print('giveMeEverythingFlutter： ${everything.aInt}');
+    print('giveMeEverythingFlutter： ${everything.aString}');
   }
 }

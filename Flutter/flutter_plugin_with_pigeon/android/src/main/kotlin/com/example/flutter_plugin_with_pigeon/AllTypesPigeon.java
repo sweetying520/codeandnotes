@@ -281,22 +281,11 @@ public class AllTypesPigeon {
       return FlutterEverythingCodec.INSTANCE;
     }
 
-    public void giveMeEverythingFlutter(Reply<Everything> callback) {
+    public void giveMeEverythingFlutter(Everything everythingArg, Reply<Void> callback) {
       BasicMessageChannel<Object> channel =
           new BasicMessageChannel<>(binaryMessenger, "dev.flutter.pigeon.FlutterEverything.giveMeEverythingFlutter", getCodec());
-      channel.send(null, channelReply -> {
-        @SuppressWarnings("ConstantConditions")
-        Everything output = (Everything)channelReply;
-        callback.reply(output);
-      });
-    }
-    public void echoFlutter(Everything everythingArg, Reply<Everything> callback) {
-      BasicMessageChannel<Object> channel =
-          new BasicMessageChannel<>(binaryMessenger, "dev.flutter.pigeon.FlutterEverything.echoFlutter", getCodec());
       channel.send(new ArrayList<Object>(Arrays.asList(everythingArg)), channelReply -> {
-        @SuppressWarnings("ConstantConditions")
-        Everything output = (Everything)channelReply;
-        callback.reply(output);
+        callback.reply(null);
       });
     }
   }

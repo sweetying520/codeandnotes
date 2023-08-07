@@ -46,7 +46,6 @@ NSObject<FlutterMessageCodec> *FLTFlutterEverythingGetCodec(void);
 
 @interface FLTFlutterEverything : NSObject
 - (instancetype)initWithBinaryMessenger:(id<FlutterBinaryMessenger>)binaryMessenger;
-- (void)giveMeEverythingFlutterWithCompletion:(void(^)(FLTEverything *_Nullable, NSError *_Nullable))completion;
-- (void)echoFlutterEverything:(FLTEverything *)everything completion:(void(^)(FLTEverything *_Nullable, NSError *_Nullable))completion;
+- (void)giveMeEverythingFlutterEverything:(FLTEverything *)everything completion:(void(^)(NSError *_Nullable))completion;
 @end
 NS_ASSUME_NONNULL_END

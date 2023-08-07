@@ -228,26 +228,14 @@ NSObject<FlutterMessageCodec> *FLTFlutterEverythingGetCodec() {
   }
   return self;
 }
-- (void)giveMeEverythingFlutterWithCompletion:(void(^)(FLTEverything *_Nullable, NSError *_Nullable))completion {
+- (void)giveMeEverythingFlutterEverything:(FLTEverything *)arg_everything completion:(void(^)(NSError *_Nullable))completion {
   FlutterBasicMessageChannel *channel =
     [FlutterBasicMessageChannel
       messageChannelWithName:@"dev.flutter.pigeon.FlutterEverything.giveMeEverythingFlutter"
       binaryMessenger:self.binaryMessenger
       codec:FLTFlutterEverythingGetCodec()];
-  [channel sendMessage:nil reply:^(id reply) {
-    FLTEverything *output = reply;
-    completion(output, nil);
-  }];
-}
-- (void)echoFlutterEverything:(FLTEverything *)arg_everything completion:(void(^)(FLTEverything *_Nullable, NSError *_Nullable))completion {
-  FlutterBasicMessageChannel *channel =
-    [FlutterBasicMessageChannel
-      messageChannelWithName:@"dev.flutter.pigeon.FlutterEverything.echoFlutter"
-      binaryMessenger:self.binaryMessenger
-      codec:FLTFlutterEverythingGetCodec()];
   [channel sendMessage:@[arg_everything] reply:^(id reply) {
-    FLTEverything *output = reply;
-    completion(output, nil);
+    completion(nil);
   }];
 }
 @end

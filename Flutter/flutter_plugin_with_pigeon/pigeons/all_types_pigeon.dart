@@ -24,6 +24,6 @@ abstract class HostEverything{
 ///原生调用 Flutter 的方法
 @FlutterApi()
 abstract class FlutterEverything{
-  Everything giveMeEverythingFlutter();
-  Everything echoFlutter(Everything everything);
+  void giveMeEverythingFlutter(Everything everything);
+  //Everything echoFlutter(Everything everything);
 }

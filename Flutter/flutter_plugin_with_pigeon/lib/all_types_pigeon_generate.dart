@@ -174,8 +174,7 @@ class _FlutterEverythingCodec extends StandardMessageCodec {
 abstract class FlutterEverything {
   static const MessageCodec<Object?> codec = _FlutterEverythingCodec();
 
-  Everything giveMeEverythingFlutter();
-  Everything echoFlutter(Everything everything);
+  void giveMeEverythingFlutter(Everything everything);
   static void setup(FlutterEverything? api, {BinaryMessenger? binaryMessenger}) {
     {
       final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
@@ -184,25 +183,12 @@ abstract class FlutterEverything {
         channel.setMessageHandler(null);
       } else {
         channel.setMessageHandler((Object? message) async {
-          // ignore message
-          final Everything output = api.giveMeEverythingFlutter();
-          return output;
-        });
-      }
-    }
-    {
-      final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
-          'dev.flutter.pigeon.FlutterEverything.echoFlutter', codec, binaryMessenger: binaryMessenger);
-      if (api == null) {
-        channel.setMessageHandler(null);
-      } else {
-        channel.setMessageHandler((Object? message) async {
-          assert(message != null, 'Argument for dev.flutter.pigeon.FlutterEverything.echoFlutter was null.');
+          assert(message != null, 'Argument for dev.flutter.pigeon.FlutterEverything.giveMeEverythingFlutter was null.');
           final List<Object?> args = (message as List<Object?>?)!;
           final Everything? arg_everything = (args[0] as Everything?);
-          assert(arg_everything != null, 'Argument for dev.flutter.pigeon.FlutterEverything.echoFlutter was null, expected non-null Everything.');
-          final Everything output = api.echoFlutter(arg_everything!);
-          return output;
+          assert(arg_everything != null, 'Argument for dev.flutter.pigeon.FlutterEverything.giveMeEverythingFlutter was null, expected non-null Everything.');
+          api.giveMeEverythingFlutter(arg_everything!);
+          return;
         });
       }
     }
