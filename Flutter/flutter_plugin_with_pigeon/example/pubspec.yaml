@@ -17,9 +17,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  permission_request:
-    hosted: 'http://pub.akusre.com/'
-    version: '0.0.3'
 
   flutter_plugin_with_pigeon:
     # When depending on this package from a real application you should use:
