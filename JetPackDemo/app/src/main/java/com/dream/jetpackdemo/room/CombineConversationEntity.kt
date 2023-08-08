@@ -1,4 +1,4 @@
-package com.akulaku.chat.model.entity
+package com.dream.jetpackdemo.room
 
 import android.os.Parcelable
 import androidx.annotation.Keep

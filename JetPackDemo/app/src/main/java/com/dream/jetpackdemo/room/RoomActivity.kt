@@ -4,8 +4,6 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.akulaku.chat.model.entity.CombineConversationEntity
-import com.dream.jetpackdemo.R
 import com.dream.jetpackdemo.databinding.ActivityRoomBinding
 import kotlin.concurrent.thread
 
@@ -25,7 +23,6 @@ class RoomActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         mBinding = ActivityRoomBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
-
 
         initClickListener()
     }

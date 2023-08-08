@@ -1,6 +1,5 @@
 package com.dream.jetpackdemo.room
 
-import com.akulaku.chat.model.entity.CombineConversationEntity
 import com.dream.jetpackdemo.MyApplication
 
 /**

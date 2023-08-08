@@ -1,10 +1,7 @@
 package com.dream.jetpackdemo.room
 
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.akulaku.chat.model.entity.CombineConversationEntity
-import com.dream.jetpackdemo.MyApplication
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

@@ -4,7 +4,6 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.akulaku.chat.model.entity.CombineConversationEntity
 
 /**
  * function: 通过接口注解定义数据的增删查改方法
